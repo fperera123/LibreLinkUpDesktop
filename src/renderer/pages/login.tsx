@@ -40,10 +40,10 @@ export default function LoginPage() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
-      password: "",
-      country: "",
-      language: "",
+      username: "marvin@poopjournal.rocks",
+      password: "6B/bLYkw=do3e_M9bMuF2",
+      country: "de",
+      language: "en",
     },
   })
 
