@@ -206,8 +206,10 @@
     },
     "win": {
       "target": [
-        "nsis"
-      ]
+        "appx",
+        "msi"
+      ],
+      "certificateFile" : "CrazyMarvin.pfx"
     },
     "linux": {
       "target": [
@@ -227,6 +229,18 @@
         "Comment": "Fetches your blood sugar from LibreLinkUp"
       },
       "executableArgs": []
+    },
+    "msi": {
+      "artifactName": "${productName}-${version}-${arch}.msi",
+      "shortcutName": "LibreLinkUpDesktop"
+    },
+    "appx": {
+      "backgroundColor": "#464646",
+      "displayName": "LibreLinkUpDesktop",
+      "identityName": "LibreLinkUpDesktop",
+      "publisher": "CN=CrazyMarvin",
+      "publisherDisplayName": "Crazy Marvin and Contributors",
+      "artifactName": "${productName}-${version}-${arch}.appx"
     },
     "appImage": {
       "artifactName": "${productName}-${version}-${arch}.AppImage"
