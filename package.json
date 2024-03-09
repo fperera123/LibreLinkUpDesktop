@@ -206,10 +206,9 @@
     },
     "win": {
       "target": [
-        "appx",
-        "msi"
+        "appx"
       ],
-      "certificateFile" : "CrazyMarvin.pfx"
+      "certificateFile" : "certificateFile.pfx"
     },
     "linux": {
       "target": [
@@ -238,7 +237,7 @@
       "backgroundColor": "#464646",
       "displayName": "LibreLinkUpDesktop",
       "identityName": "LibreLinkUpDesktop",
-      "publisher": "CN=CrazyMarvin",
+      "publisher": "CN=Crazy Marvin and Contributors",
       "publisherDisplayName": "Crazy Marvin and Contributors",
       "artifactName": "${productName}-${version}-${arch}.appx"
     },
