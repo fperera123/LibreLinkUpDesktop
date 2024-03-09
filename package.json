@@ -206,9 +206,29 @@
     },
     "win": {
       "target": [
-        "appx"
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
+        {
+          "target": "msi",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
+        {
+          "target": "appx",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
       ],
-      "certificateFile" : "certificateFile.pfx"
+      "icon": "assets/icon.ico"
     },
     "linux": {
       "target": [
@@ -229,12 +249,22 @@
       },
       "executableArgs": []
     },
+    "nsis": {
+      "artifactName": "${productName}-${version}-${arch}-setup.exe",
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "assets/icon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "LibreLinkUpDesktop"
+    },
     "msi": {
       "artifactName": "${productName}-${version}-${arch}.msi",
       "shortcutName": "LibreLinkUpDesktop"
     },
     "appx": {
-      "backgroundColor": "#464646",
+      "backgroundColor": "#000000",
       "displayName": "LibreLinkUpDesktop",
       "identityName": "LibreLinkUpDesktop",
       "publisher": "CN=Crazy Marvin and Contributors",
