@@ -1,3 +1,21 @@
+name: librelinkupdesktop
+base: core20
+version: '0.1.3'
+summary: Fetches your blood sugar from LibreLinkUp
+description: |
+ This is a desktop application that fetches your blood sugar from LibreLinkUp
+
+confinement: strict
+grade: stable
+
+architectures:
+  - build-on: amd64
+
+apps:
+  librelinkupdesktop:
+    command: electron-launch $SNAP/librelinkupdesktop-linux-x64/librelinkupdesktop
+    plugs: [home, x11, unity7, browser-support, network, gsettings, pulseaudio, opengl]
+
 parts:
   librelinkupdesktop:
     source: .
