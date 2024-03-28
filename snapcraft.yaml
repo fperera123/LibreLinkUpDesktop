@@ -22,7 +22,7 @@ apps:
 parts:
   electron-launch:
       plugin: dump
-      source: files/
+      source: .
       override-build: |
         chmod +x bin/electron-launch
         # Add any additional commands to verify electron-launch's availability here
