@@ -41,6 +41,7 @@ parts:
 
       # Proceed with your original build commands
       npm install
+      npm run package
     stage-packages:
       - libnss3
       - libnspr4
