@@ -20,6 +20,7 @@ parts:
   librelinkupdesktop:
     source: .
     plugin: npm
+    npm-node-version: '20.11.1'
     build-packages:
       - curl
       - xz-utils
