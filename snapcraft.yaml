@@ -35,7 +35,7 @@ parts:
         fi
 
         npm install electron @electron/packager
-        npx electron-packager . librelinkupdesktop --overwrite --platform=linux --arch=x64 --out=release-build --prune=true --electron-version=YOUR_ELECTRON_VERSION_HERE --app-version=0.1.3
+        npx electron-packager . librelinkupdesktop --overwrite --platform=linux --arch=x64 --out=release-build --prune=true --electron-version=27.3.4 --app-version=0.1.3
         cp -rv ./librelinkupdesktop-linux-* $SNAPCRAFT_PART_INSTALL/librelinkupdesktop
     build-snaps:
     - node/20/stable
