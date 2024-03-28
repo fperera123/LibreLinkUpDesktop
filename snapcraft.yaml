@@ -19,7 +19,7 @@ apps:
 parts:
   librelinkupdesktop:
     source: .
-    plugin: nodejs
+    plugin: node
     nodejs-version: '20.11.1'
     nodejs-package-manager: npm
     build-packages:
