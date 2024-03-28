@@ -13,7 +13,10 @@ architectures:
 
 apps:
   librelinkupdesktop:
-    command: electron-launch $SNAP/release/build/linux-unpacked/librelinkupdesktop
+    command: bin/electron-launch $SNAP/release/build/linux-unpacked/librelinkupdesktop
+    desktop: usr/share/applications/librelinkupdesktop.desktop
+    environment:
+      TMPDIR: $XDG_RUNTIME_DIR
     plugs: [home, x11, unity7, browser-support, network, gsettings, pulseaudio, opengl]
 
 parts:
@@ -60,3 +63,9 @@ parts:
       - libasound2
       - libatspi2.0-0
       - libgtk-3-0
+    electron-launch:
+      plugin: dump
+      source: files/
+      prepare: |
+        chmod +x bin/electron-launch
+
