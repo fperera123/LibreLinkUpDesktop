@@ -1,5 +1,5 @@
 name: librelinkupdesktop
-base: core20
+base: core22
 version: '0.1.3'
 summary: Fetches your blood sugar from LibreLinkUp
 description: |
