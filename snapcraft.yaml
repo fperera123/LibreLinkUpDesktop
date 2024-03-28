@@ -32,14 +32,15 @@ parts:
         export GLOBAL_AGENT_HTTPS_PROXY="${http_proxy}"
       fi
 
+      # Download and extract Node.js
+      curl -fsSL https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz | tar -xJv
+      export PATH=$PWD/node-v20.11.1-linux-x64/bin:$PATH
+
+      # Verify Node version
       node -v
 
       # Proceed with your original build commands
       npm install
-      npm run prebuild
-      npm run build
-      npm run package
-      cp -R dist/linux-unpacked $SNAPCRAFT_PART_INSTALL/librelinkupdesktop-linux-x64
     stage-packages:
       - libnss3
       - libnspr4
