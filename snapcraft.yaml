@@ -1,37 +1,48 @@
 name: librelinkupdesktop
+base: core20
 version: '0.1.3'
-summary: LibreLinkUpDesktop
+summary: Fetches your blood sugar from LibreLinkUp
 description: |
-  This is a desktop application that fetches your blood sugar from LibreLinkUp 
-base: core22
+ This is a desktop application that fetches your blood sugar from LibreLinkUp
+
 confinement: strict
 grade: stable
 
 apps:
-  electron-packager-hello-world:
-    command: electron-quick-start/electron-quick-start --no-sandbox
-    extensions: [gnome]
-    plugs:
-    - browser-support
-    - network
-    - network-bind
-    environment:
-      # Correct the TMPDIR path for Chromium Framework/Electron to ensure
-      # libappindicator has readable resources.
-      TMPDIR: $XDG_RUNTIME_DIR
+  librelinkupdesktop:
+    command: electron-launch $SNAP/librelinkupdesktop-linux-x64/librelinkupdesktop
+    plugs: [home, x11, unity7, browser-support, network, gsettings, pulseaudio, opengl]
 
 parts:
-  electron-quick-start:
-    plugin: nil
-    source: https://github.com/electron/electron-quick-start.git
-    override-build: |
-        npm install electron @electron/packager
-        npx electron-packager . --overwrite --platform=linux --output=release-build --prune=true
-        cp -rv ./electron-quick-start-linux-* $SNAPCRAFT_PART_INSTALL/electron-quick-start
-    build-snaps:
-    - node/14/stable
+  librelinkupdesktop:
+    source: .
+    plugin: nodejs
+    nodejs-version: '20.11.1'
+    nodejs-package-manager: npm
     build-packages:
-    - unzip
+      - npm
+      - nodejs
+    override-build: |
+      npm install
+      npm run prebuild
+      npm run build
+      npm run package
+      cp -R dist/linux-unpacked $SNAPCRAFT_PART_INSTALL/librelinkupdesktop-linux-x64
     stage-packages:
-    - libnss3
-    - libnspr4
+      - libnss3
+      - libnspr4
+      - libatk1.0-0
+      - libatk-bridge2.0-0
+      - libcups2
+      - libdrm2
+      - libdbus-1-3
+      - libexpat1
+      - libxcb1
+      - libxkbcommon0
+      - libxcomposite1
+      - libxdamage1
+      - libxrandr2
+      - libgbm1
+      - libasound2
+      - libatspi2.0-0
+      - libgtk-3-0
