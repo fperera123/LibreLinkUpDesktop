@@ -20,6 +20,18 @@ apps:
     plugs: [home, x11, unity7, browser-support, network, gsettings, pulseaudio, opengl]
 
 parts:
+  electron-launch:
+      plugin: dump
+      source: files/
+      override-build: |
+        chmod +x bin/electron-launch
+        # Add any additional commands to verify electron-launch's availability here
+        if [ -f bin/electron-launch ]; then
+          echo "electron-launch is available."
+        else
+          echo "electron-launch is not available."
+          exit 1
+        fi
   librelinkupdesktop:
     source: .
     plugin: npm
@@ -63,9 +75,4 @@ parts:
       - libasound2
       - libatspi2.0-0
       - libgtk-3-0
-  electron-launch:
-    plugin: dump
-    source: files/
-    prepare: |
-      chmod +x bin/electron-launch
 
