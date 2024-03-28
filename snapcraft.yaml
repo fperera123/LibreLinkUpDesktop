@@ -32,6 +32,8 @@ parts:
         export GLOBAL_AGENT_HTTPS_PROXY="${http_proxy}"
       fi
 
+      node -v
+
       # Proceed with your original build commands
       npm install
       npm run prebuild
