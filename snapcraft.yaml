@@ -3,7 +3,7 @@ base: core22
 version: '0.1.3'
 summary: Fetches your blood sugar from LibreLinkUp
 description: |
- This is a desktop application that fetches your blood sugar from LibreLinkUp
+  This is a desktop application that fetches your blood sugar from LibreLinkUp
 
 confinement: strict
 grade: stable
@@ -20,7 +20,7 @@ apps:
     - network
     - network-bind
     environment:
-      TMPDIR: $XDG_RUNTIME_DIRx
+      TMPDIR: $XDG_RUNTIME_DIR
 
 parts:
   librelinkupdesktop:
@@ -35,7 +35,7 @@ parts:
         fi
 
         npm install electron @electron/packager
-        npx electron-packager . --overwrite --platform=linux --output=release-build --prune=true
+        npx electron-packager . librelinkupdesktop --overwrite --platform=linux --arch=x64 --out=release-build --prune=true --electron-version=YOUR_ELECTRON_VERSION_HERE --app-version=0.1.3
         cp -rv ./librelinkupdesktop-linux-* $SNAPCRAFT_PART_INSTALL/librelinkupdesktop
     build-snaps:
     - node/20/stable
