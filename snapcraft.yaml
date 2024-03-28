@@ -13,7 +13,7 @@ architectures:
 
 apps:
   librelinkupdesktop:
-    command: electron-launch $SNAP/librelinkupdesktop-linux-x64/librelinkupdesktop
+    command: electron-launch $SNAP/release/build/linux-unpacked/librelinkupdesktop
     plugs: [home, x11, unity7, browser-support, network, gsettings, pulseaudio, opengl]
 
 parts:
