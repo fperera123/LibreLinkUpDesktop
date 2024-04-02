@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <name>LibreLinkUpDesktop</name>
+  <id>rocks.poopjournal.librelinkupdesktop</id>
+  <summary>This is a desktop application that fetches your blood sugar from LibreLinkUp</summary>
+
+  <metadata_license>Apache 2.0 </metadata_license>
+  <project_license>Apache 2.0 </project_license>
+
+  <description>
+    <p>
+      This is a desktop application that fetches your blood sugar from LibreLinkUp
+    </p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://github-production-user-asset-6210df.s3.amazonaws.com/15004217/282612446-05b5f05f-bb0a-4146-970b-f6c38997310c.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240402%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240402T115905Z&X-Amz-Expires=300&X-Amz-Signature=17a1327429992181e222974dee53f9bf79d87f10e0efd526ee7d6919530f2540&X-Amz-SignedHeaders=host&actor_id=31954660&key_id=0&repo_id=452040326</image>
+      <caption>Login Page</caption>
+    </screenshot>
+  </screenshots>
+  <releases>
+    <release version="0.1.4" date="2024-04-02"/>
+  </releases>
+  <content_rating type="oars-1.1"/>
+
+  <developer id="rocks.poopjournal">
+    <name>Crazy Marvin & Contributors</name>
+  </developer>
+
+  <launchable type="desktop-id">rocks.poopjournal.librelinkupdesktop.desktop</launchable>
+</component>
