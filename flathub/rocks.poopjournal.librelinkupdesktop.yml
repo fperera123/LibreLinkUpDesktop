@@ -31,13 +31,14 @@ modules:
       - ls -la release-build/librelinkupdesktop-linux-x64
       - cp -a ./release-build/librelinkupdesktop-linux-x64 /app/main
       - install -Dm755 -t /app/bin/ ./run.sh
-      - install -Dm644 src/assets/logo.svg /app/share/icons/hicolor/scalable/apps/librelinkupdesktop.svg
+      - install -Dm644 assets/logo.svg /app/share/icons/hicolor/scalable/apps/rocks.poopjournal.librelinkupdesktop.svg
       - install -Dm644 flathub/rocks.poopjournal.librelinkupdesktop.desktop /app/share/applications/rocks.poopjournal.librelinkupdesktop.desktop
+      - install -Dm444 flathub/rocks.poopjournal.librelinkupdesktop.metainfo.xml /app/share/metainfo/rocks.poopjournal.librelinkupdesktop.metainfo.xml
     sources:
       - type: git
         url: https://github.com/fperera123/LibreLinkUpDesktop.git
-        tag: v0.0.4
-        commit: c411eeb8175d3c4668babe02ddffa2d7d243c85e
+        tag: flathub-0.0.5
+        commit: 18b5a952edb03ec286e7c2545a848a60ee7c8df2
       - generated-sources.json
       - type: script
         dest-filename: run.sh
