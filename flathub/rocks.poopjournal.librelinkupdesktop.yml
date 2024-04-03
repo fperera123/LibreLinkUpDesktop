@@ -31,10 +31,13 @@ modules:
       - ls -la release-build/librelinkupdesktop-linux-x64
       - cp -a ./release-build/librelinkupdesktop-linux-x64 /app/main
       - install -Dm755 -t /app/bin/ ./run.sh
+      - install -Dm644 src/assets/logo.svg /app/share/icons/hicolor/scalable/apps/librelinkupdesktop.svg
+      - install -Dm644 flathub/rocks.poopjournal.librelinkupdesktop.desktop /app/share/applications/rocks.poopjournal.librelinkupdesktop.desktop
     sources:
-      - type: archive
-        url: https://github.com/Crazy-Marvin/LibreLinkUpDesktop/archive/refs/tags/v0.1.4.tar.gz
-        sha256: e2072b7a807fed009a7db5d59c586dc36f3dfb8598e36fd0fbcc4b8df3d132f7
+      - type: git
+        url: https://github.com/fperera123/LibreLinkUpDesktop.git
+        tag: v0.0.4
+        commit: c411eeb8175d3c4668babe02ddffa2d7d243c85e
       - generated-sources.json
       - type: script
         dest-filename: run.sh
