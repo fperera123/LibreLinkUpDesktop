@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=LibreLinkUpDesktop
+Comment=Fetches your blood sugar from LibreLinkUp
+Icon=librelinkupdesktop
+Exec=run.sh
+Categories=Utility
