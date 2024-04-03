@@ -24,7 +24,7 @@
   <content_rating type="oars-1.1"/>
 
   <developer id="rocks.poopjournal">
-    <name>Crazy Marvin &amp; Contributors</name>
+    <name>Crazy Marvin and Contributors</name>
   </developer>
 
   <launchable type="desktop-id">rocks.poopjournal.librelinkupdesktop.desktop</launchable>
