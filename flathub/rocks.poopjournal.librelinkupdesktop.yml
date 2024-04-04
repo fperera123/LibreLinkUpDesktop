@@ -24,21 +24,22 @@ modules:
       env:
         XDG_CACHE_HOME: /run/build/librelinkupdesktop/flatpak-node/cache
         npm_config_cache: /run/build/librelinkupdesktop/flatpak-node/npm-cache
-        npm_config_offline: 'true'
+        npm_config_offline: "true"
     build-commands:
       - npm install --offline
-      - npx electron-packager . librelinkupdesktop --overwrite --platform=linux --arch=x64 --out=release-build --prune=true --electron-version=27.3.4 --app-version=0.1.3
-      - ls -la release-build/librelinkupdesktop-linux-x64
-      - cp -a ./release-build/librelinkupdesktop-linux-x64 /app/main
+      - ./flatpak-node/electron-builder-arch-args.sh
+      - npx ts-node ./.erb/scripts/clean.js dist && npm run build && npx electron-builder --linux --dir $ELECTRON_BUILDER_ARCH_ARGS
+      - ls -la release/build/linux*unpacked
+      - cp -a release/build/linux*unpacked /app/main
       - install -Dm755 -t /app/bin/ ./run.sh
       - install -Dm644 assets/logo.svg /app/share/icons/hicolor/scalable/apps/rocks.poopjournal.librelinkupdesktop.svg
       - install -Dm644 flathub/rocks.poopjournal.librelinkupdesktop.desktop /app/share/applications/rocks.poopjournal.librelinkupdesktop.desktop
       - install -Dm444 flathub/rocks.poopjournal.librelinkupdesktop.metainfo.xml /app/share/metainfo/rocks.poopjournal.librelinkupdesktop.metainfo.xml
     sources:
       - type: git
-        url: https://github.com/fperera123/LibreLinkUpDesktop.git
-        tag: flathub-0.0.5
-        commit: 18b5a952edb03ec286e7c2545a848a60ee7c8df2
+        url: https://github.com/Crazy-Marvin/LibreLinkUpDesktop.git
+        tag: v0.1.5
+        commit: 11fc169ba7aeffa54a24563a956b56ee464838b3
       - generated-sources.json
       - type: script
         dest-filename: run.sh
