@@ -4,7 +4,7 @@
   <id>rocks.poopjournal.librelinkupdesktop</id>
   <summary>This is a desktop application that fetches your blood sugar from LibreLinkUp</summary>
 
-  <metadata_license>Apache-2.0</metadata_license>
+  <metadata_license>MIT</metadata_license>
   <project_license>Apache-2.0</project_license>
 
   <description>
