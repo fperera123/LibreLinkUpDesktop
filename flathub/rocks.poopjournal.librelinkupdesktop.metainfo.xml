@@ -4,8 +4,8 @@
   <id>rocks.poopjournal.librelinkupdesktop</id>
   <summary>This is a desktop application that fetches your blood sugar from LibreLinkUp</summary>
 
-  <metadata_license>Apache-2.0</metadata_license>
-  <project_license>Apache-2.0</project_license>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
 
   <description>
     <p>
@@ -27,7 +27,7 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.1.4" date="2024-04-02"/>
+    <release version="0.1.6" date="2024-04-05"/>
   </releases>
   <content_rating type="oars-1.1"/>
 
