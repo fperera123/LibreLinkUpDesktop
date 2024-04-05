@@ -4,7 +4,7 @@
   <id>rocks.poopjournal.librelinkupdesktop</id>
   <summary>This is a desktop application that fetches your blood sugar from LibreLinkUp</summary>
 
-  <metadata_license>Apache-2.0</metadata_license>
+  <metadata_license>MIT</metadata_license>
   <project_license>Apache-2.0</project_license>
 
   <description>
@@ -12,6 +12,9 @@
       This is a desktop application that fetches your blood sugar from LibreLinkUp
     </p>
   </description>
+
+  <url type="homepage">https://github.com/Crazy-Marvin/LibreLinkUpDesktop</url>
+
   <screenshots>
     <screenshot type="default">
       <image>https://i.postimg.cc/4xvGNMMx/282612446-05b5f05f-bb0a-4146-970b-f6c38997310c.png</image>
@@ -27,7 +30,7 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.1.4" date="2024-04-02"/>
+    <release version="0.1.7" date="2024-04-06"/>
   </releases>
   <content_rating type="oars-1.1"/>
 
