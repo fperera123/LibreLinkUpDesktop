@@ -20,6 +20,11 @@
   <url type="donation">https://poopjournal.rocks/donate/</url>
   <url type="bugtracker">https://github.com/Crazy-Marvin/LibreLinkUpDesktop/issues</url>
 
+  <branding>
+  <color type="primary" scheme_preference="light">#FF3300</color>
+  <color type="primary" scheme_preference="dark">#FF3300</color>
+  </branding>
+
   <screenshots>
     <screenshot type="default">
       <image>https://i.postimg.cc/4xvGNMMx/282612446-05b5f05f-bb0a-4146-970b-f6c38997310c.png</image>
