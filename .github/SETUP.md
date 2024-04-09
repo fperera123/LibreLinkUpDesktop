@@ -40,3 +40,21 @@ increased following the rules of [Semantic Versioning](https://semver.org/).
 
 - Localization is located on `src/renderer/i18n` folder.
 - App configuration can be found on `src/renderer/config` folder
+
+## Store releases
+
+We officially support three stores:
+
+- **[Flathub](https://flathub.org/apps/rocks.poopjournal.librelinkupdesktop)**
+
+  TBD  
+
+- **[Snapcraft](https://snapcraft.io/librelinkupdesktop)**
+
+  TBD
+  
+- **[Microsoft Store](https://www.microsoft.com/store/apps/9N5RKKLQM5C9)**
+
+  TBD
+
+Note: Other (unofficial) releases might be done by the community. Please let us know by commenting in issue [#253](https://github.com/Crazy-Marvin/LibreLinkUpDesktop/issues/253) just so we know about it.  
