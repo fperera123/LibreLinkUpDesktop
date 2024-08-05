@@ -30,6 +30,14 @@ export function sendLogout() {
   window.electron.ipcRenderer.sendMessage('logout')
 }
 
+export function sendRefreshAllWindows() {
+  window.electron.ipcRenderer.sendMessage('refresh-all')
+}
+
+export function sendRefreshPrimaryWindow() {
+  window.electron.ipcRenderer.sendMessage('refresh-primary')
+}
+
 export function getUserValue(value: number): number {
   const { resultUnit } = useAuthStore.getState()
 

@@ -13,7 +13,7 @@ import {
 import { useAuthStore } from "@/stores/auth"
 import { countries, languages, themes, resultUnits } from "@/config/app"
 import { useTranslation } from "react-i18next"
-import { setRedirectTo } from "@/lib/utils"
+import { setRedirectTo, sendRefreshPrimaryWindow } from "@/lib/utils"
 
 export default function SettingsGeneralPage() {
   const navigate = useNavigate()
@@ -38,6 +38,11 @@ export default function SettingsGeneralPage() {
     setLanguage(l)
   }
 
+  const handleSetResultUnit = (value) => {
+    setResultUnit(value);
+    sendRefreshPrimaryWindow();
+  }
+
   return (
     <SettingsLayout>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -58,7 +63,7 @@ export default function SettingsGeneralPage() {
         </div>
         <div>
           <p className="text-foreground/30 text-xs mb-2">{t('Unit')}</p>
-          <Select onValueChange={setResultUnit} defaultValue={resultUnit ?? 'mg/dL'}>
+          <Select onValueChange={handleSetResultUnit} defaultValue={resultUnit ?? 'mg/dL'}>
             <SelectTrigger>
               <SelectValue placeholder="Select Unit" />
             </SelectTrigger>
