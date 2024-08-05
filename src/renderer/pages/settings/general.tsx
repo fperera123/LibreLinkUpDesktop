@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { useAuthStore } from "@/stores/auth"
-import { countries, languages, themes, resultUnit } from "@/config/app"
+import { countries, languages, themes, resultUnits } from "@/config/app"
 import { useTranslation } from "react-i18next"
 import { setRedirectTo } from "@/lib/utils"
 
@@ -23,6 +23,9 @@ export default function SettingsGeneralPage() {
   const setLanguage = useAuthStore((state) => state.setLanguage)
   const country = useAuthStore((state) => state.country)
   const setCountry = useAuthStore((state) => state.setCountry)
+
+  const resultUnit = useAuthStore((state) => state.resultUnit)
+  const setResultUnit = useAuthStore((state) => state.setResultUnit)
 
   const { setTheme } = useTheme()
   const setAndRefreshTheme = (t: ThemeType) => {
@@ -55,14 +58,14 @@ export default function SettingsGeneralPage() {
         </div>
         <div>
           <p className="text-foreground/30 text-xs mb-2">Unit</p>
-          <Select onValueChange={setCountry} defaultValue={country ?? ''}>
+          <Select onValueChange={setResultUnit} defaultValue={resultUnit ?? 'mg/dL'}>
             <SelectTrigger>
-              <SelectValue placeholder="Select Country" />
+              <SelectValue placeholder="Select Unit" />
             </SelectTrigger>
             <SelectContent>
-              {resultUnit.map(coun => (
-                <SelectItem value={coun.value} key={coun.value}>
-                  {t(coun.label)}
+              {resultUnits.map(item => (
+                <SelectItem value={item.value} key={item.value}>
+                  {t(item.label)}
                 </SelectItem>
               ))}
             </SelectContent>
