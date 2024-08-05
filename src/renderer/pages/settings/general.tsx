@@ -42,7 +42,7 @@ export default function SettingsGeneralPage() {
     <SettingsLayout>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="text-foreground/30 text-xs mb-2">Theme</p>
+          <p className="text-foreground/30 text-xs mb-2">{t('Theme')}</p>
           <Select onValueChange={setAndRefreshTheme} defaultValue={theme ?? ''}>
             <SelectTrigger>
               <SelectValue placeholder="Select Theme" />
@@ -57,7 +57,7 @@ export default function SettingsGeneralPage() {
           </Select>
         </div>
         <div>
-          <p className="text-foreground/30 text-xs mb-2">Unit</p>
+          <p className="text-foreground/30 text-xs mb-2">{t('Unit')}</p>
           <Select onValueChange={setResultUnit} defaultValue={resultUnit ?? 'mg/dL'}>
             <SelectTrigger>
               <SelectValue placeholder="Select Unit" />
@@ -72,7 +72,7 @@ export default function SettingsGeneralPage() {
           </Select>
         </div>
         <div>
-          <p className="text-foreground/30 text-xs mb-2">Country</p>
+          <p className="text-foreground/30 text-xs mb-2">{t('Country')}</p>
           <Select onValueChange={setCountry} defaultValue={country ?? ''}>
             <SelectTrigger>
               <SelectValue placeholder="Select Country" />
@@ -87,7 +87,7 @@ export default function SettingsGeneralPage() {
           </Select>
         </div>
         <div>
-          <p className="text-foreground/30 text-xs mb-2">Language</p>
+          <p className="text-foreground/30 text-xs mb-2">{t('Language')}</p>
           <Select onValueChange={setAndRefreshLanguage} defaultValue={language ?? ''}>
             <SelectTrigger>
               <SelectValue placeholder="Select Language" />

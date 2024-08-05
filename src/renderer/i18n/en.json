@@ -40,5 +40,7 @@
   "Country": "Country",
   "Language": "Language",
   "SelectCountry": "Select Country",
-  "SelectLanguage": "Select Language"
+  "SelectLanguage": "Select Language",
+  "Theme": "Theme",
+  "Unit": "Unit"
 }
