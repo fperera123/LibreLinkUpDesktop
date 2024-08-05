@@ -7,7 +7,7 @@ import { GearIcon } from "@radix-ui/react-icons"
 import { useNavigate } from "react-router-dom"
 import { LoadingScreen } from "@/components/ui/loading"
 import { useClearSession } from "@/hooks/session"
-import { openNewWindow, setRedirectTo } from "@/lib/utils"
+import { openNewWindow, setRedirectTo, getUserValue, getUserUnit } from "@/lib/utils"
 
 export default function DashboardPage() {
   const { clearSession } = useClearSession()
@@ -70,7 +70,7 @@ export default function DashboardPage() {
         <GearIcon className="text-white h-6 w-6" />
       </button>
       <div className="flex items-center gap-3">
-        <p className="text-white text-3xl font-semibold">{graphData?.ValueInMgPerDl} mg/dL</p>
+        <p className="text-white text-3xl font-semibold">{getUserValue(graphData?.ValueInMgPerDl) + ' ' + getUserUnit() }</p>
         <div className="flex justify-center items-center h-12 w-12 rounded-full bg-white/25">
           <TrendArrow className="h-9 w-9 text-white" trend={graphData?.TrendArrow ?? 1} />
         </div>
