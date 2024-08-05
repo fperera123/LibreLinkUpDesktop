@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { useAuthStore } from '../stores/auth'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -29,4 +30,22 @@ export function sendLogout() {
   window.electron.ipcRenderer.sendMessage('logout')
 }
 
+export function getUserValue(value: number): number {
+  const { resultUnit } = useAuthStore.getState()
 
+  if (resultUnit === 'mg/dL') {
+    return Math.round(value)
+  }
+
+  if (resultUnit === 'mmol/L') {
+    return Math.round(value / 18.0182)
+  }
+
+  throw new Error(`Unsupported result unit: ${resultUnit}`)
+}
+
+export function getUserUnit(): string {
+  const { resultUnit } = useAuthStore.getState()
+
+  return resultUnit
+}
