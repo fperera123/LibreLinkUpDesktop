@@ -5,6 +5,7 @@ type AuthStore = {
   token: string|null
   country: string|null
   language: string|null
+  resultUnit: string|null
   setCountry: (value: string) => void
   setLanguage: (value: string) => void
   login: (token: string, country: string, language: string) => void
@@ -21,6 +22,7 @@ const useAuthStore = create<AuthStore>()(
       logout: () => set(() => ({ token: null })),
       setCountry: (value) => set(() => ({ country: value })),
       setLanguage: (value) => set(() => ({ language: value })),
+      setResultUnit: (value) => set(() => ({ resultUnit: value })),
     }), {
       name: 'auth-storage',
       storage: createJSONStorage(() => localStorage),

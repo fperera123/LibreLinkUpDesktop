@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { useAuthStore } from "@/stores/auth"
-import { countries, languages, themes } from "@/config/app"
+import { countries, languages, themes, resultUnit } from "@/config/app"
 import { useTranslation } from "react-i18next"
 import { setRedirectTo } from "@/lib/utils"
 
@@ -52,29 +52,21 @@ export default function SettingsGeneralPage() {
               ))}
             </SelectContent>
           </Select>
-          {/* <div className="border rounded-md">
-            <Button
-              className={cn(theme === 'dark' ? 'bg-primary/10 border border-primary' : '')}
-              variant="ghost"
-              onClick={() => setAndRefreshTheme('dark')}
-            >
-              {t('Dark')}
-            </Button>
-            <Button
-              className={cn(theme === 'light' ? 'bg-primary/10 border border-primary' : '')}
-              variant="ghost"
-              onClick={() => setAndRefreshTheme('light')}
-            >
-              {t('Light')}
-            </Button>
-            <Button
-              className={cn(theme === 'system' ? 'bg-primary/10 border border-primary' : '')}
-              variant="ghost"
-              onClick={() => setAndRefreshTheme('system')}
-            >
-              {t('System')}
-            </Button>
-          </div> */}
+        </div>
+        <div>
+          <p className="text-foreground/30 text-xs mb-2">Unit</p>
+          <Select onValueChange={setCountry} defaultValue={country ?? ''}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select Country" />
+            </SelectTrigger>
+            <SelectContent>
+              {resultUnit.map(coun => (
+                <SelectItem value={coun.value} key={coun.value}>
+                  {t(coun.label)}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
         <div>
           <p className="text-foreground/30 text-xs mb-2">Country</p>
