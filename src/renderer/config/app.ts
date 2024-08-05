@@ -38,14 +38,14 @@ const themes: DropdownConfigType[] = [
   },
 ];
 
-const resultUnit: DropdownConfigType[] = [
+const resultUnits: DropdownConfigType[] = [
   {
     label: 'mg/dL',
-    value: 'mgdl',
+    value: 'mg/dL',
   },
   {
     label: 'mmol/L',
-    value: 'mmoll',
+    value: 'mmol/L',
   },
 ];
 
@@ -53,5 +53,5 @@ export {
   countries,
   languages,
   themes,
-  resultUnit,
+  resultUnits,
 }
