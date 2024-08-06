@@ -5,7 +5,7 @@
 Install Node.js 20 on your machine and go to the project root and run following command:
 
 ```bash
-npm install
+npm install --legacy-peer-deps
 ```
 
 In order to generate the executables run following command:
