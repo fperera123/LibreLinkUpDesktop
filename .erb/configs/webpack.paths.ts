@@ -20,6 +20,8 @@ const distRendererPath = path.join(distPath, 'renderer');
 
 const buildPath = path.join(releasePath, 'build');
 
+const erbNodeModulesPath = path.resolve(__dirname, '../../node_modules');
+
 export default {
   rootPath,
   dllPath,
@@ -35,4 +37,5 @@ export default {
   distMainPath,
   distRendererPath,
   buildPath,
+  erbNodeModulesPath,
 };

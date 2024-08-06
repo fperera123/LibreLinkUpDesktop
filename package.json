@@ -5,7 +5,7 @@
     "name": "Yuran Fernando",
     "email": "yuran93@gmail.com"
   },
-  "main": "./src/main/main.ts",
+  "main": "./.erb/dll/main.bundle.dev.js",
   "scripts": {
     "prebuild": "node ./prebuild/index.mjs",
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
@@ -17,7 +17,7 @@
     "package-all": "ts-node ./.erb/scripts/clean.js dist && npm run build && electron-builder build -mwl --publish never",
     "rebuild": "electron-rebuild --parallel --types prod,dev,optional --module-dir release/app",
     "start": "ts-node ./.erb/scripts/check-port-in-use.js && npm run start:renderer",
-    "start:main": "cross-env NODE_ENV=development electronmon -r ts-node/register/transpile-only .",
+    "start:main": "cross-env NODE_ENV=development  TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.main.dev.ts && electronmon .",
     "start:preload": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.preload.dev.ts",
     "start:renderer": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack serve --config ./.erb/configs/webpack.config.renderer.dev.ts",
     "test": "jest"
@@ -124,7 +124,7 @@
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
     "detect-port": "^1.6.1",
-    "electron": "^27.3.11",
+    "electron": "^31.3.1",
     "electron-builder": "^24.13.3",
     "electron-devtools-installer": "^3.2.0",
     "electronmon": "^2.0.3",
