@@ -13,11 +13,13 @@ description: |
   - That's it. 🩸
 
 contact: 'mailto:marvin@poopjournal.rocks'
-donation: 'https://poopjournal.rocks/blog/donate/'
-issues: 'https://github.com/Crazy-Marvin/LibreLinkUpDesktop/issues'
-source-code: 'https://github.com/Crazy-Marvin/LibreLinkUpDesktop'
+donation: https://poopjournal.rocks/blog/donate/
+issues: https://github.com/Crazy-Marvin/LibreLinkUpDesktop/issues
+source-code: https://github.com/Crazy-Marvin/LibreLinkUpDesktop
+license: 'Apache-2.0'
 title: LibreLinkUpDesktop
 type: app
+icon: assets/logo.svg
 website: 'https://github.com/Crazy-Marvin/LibreLinkUpDesktop'
 
 confinement: strict
