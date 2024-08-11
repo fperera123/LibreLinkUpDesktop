@@ -16,38 +16,18 @@
 
   <description>
     <p>
-      This is a desktop application that fetches your blood sugar from LibreLinkUp.
-      <br><br>
-      <b>Features of LibreLinkUpDesktop:</b>
-      <ul>
-      <li>Show blood glucose level on your desktop in a little window</li>
-      <li>No tracking</li>
-      <li>Dark Mode</li>
-      <li>Libre software</li>
-      <li>That's it. 🩸</li>
-      </ul>
-      <br>
+      This is a desktop application that fetches your blood sugar from LibreLinkUp
     </p>
   </description>
 
   <launchable type="desktop-id">rocks.poopjournal.librelinkupdesktop.desktop</launchable>
-
   <screenshots>
     <screenshot type="default">
-      <image>https://i.postimg.cc/k54sQ0tc/Login.jpg</image>
-      <caption>Login</caption>
-    </screenshot>
-    <screenshot>
-      <image>https://i.postimg.cc/3NPFYNLf/Main.jpg</image>
-      <caption>Main Screen</caption>
-    </screenshot>
-    <screenshot>
-      <image>https://i.postimg.cc/fTprRTtN/Libre-Link-Up-Desktop-Settings.jpg</image>
-      <caption>Settings</caption>
+      <image>https://i.postimg.cc/RZLky5PT/Login.png</image>
     </screenshot>
   </screenshots>
 
   <developer id="rocks.poopjournal">
-    <name>Crazy Marvin &amp; Contributors</name>
+    <name>Crazy Marvin and Contributors</name>
   </developer>
 </component>
