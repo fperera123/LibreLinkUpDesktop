@@ -32,6 +32,7 @@ apps:
   librelinkupdesktop:
     command: librelinkupdesktop/librelinkupdesktop --no-sandbox
     extensions: [gnome]
+    desktop: usr/share/applications/rocks.poopjournal.librelinkupdesktop.desktop
     plugs:
     - browser-support
     - network
