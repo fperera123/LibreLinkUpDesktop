@@ -11,7 +11,7 @@
   <description>
     <p>
       This is a desktop application that fetches your blood sugar from LibreLinkUp.
-      <br><br>
+      <br/>
       <b>Features of LibreLinkUpDesktop:</b>
       <ul>
       <li>Show blood glucose level on your desktop in a little window</li>
@@ -20,7 +20,7 @@
       <li>Libre software</li>
       <li>That's it. 🩸</li>
       </ul>
-      <br>
+      <br/>
     </p>
   </description>
 
