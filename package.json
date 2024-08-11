@@ -1,6 +1,7 @@
 {
   "name": "rocks.poopjournal.librelinkupdesktop",
   "version": "0.1.10",
+  "type": "module",
   "author": {
     "name": "Yuran Fernando",
     "email": "yuran93@gmail.com"
