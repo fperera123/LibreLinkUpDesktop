@@ -6,7 +6,7 @@
     "name": "Yuran Fernando",
     "email": "yuran93@gmail.com"
   },
-  "main": "./.erb/dll/main.bundle.dev.js",
+  "main": "./src/main/main.ts",
   "scripts": {
     "prebuild": "node ./prebuild/index.mjs",
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
