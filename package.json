@@ -1,12 +1,11 @@
 {
   "name": "rocks.poopjournal.librelinkupdesktop",
   "version": "0.1.10",
-  "type": "module",
   "author": {
     "name": "Yuran Fernando",
     "email": "yuran93@gmail.com"
   },
-  "main": "./dist/main/main.js",
+  "main": "./src/main/main.ts",
   "scripts": {
     "prebuild": "node ./prebuild/index.mjs",
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
