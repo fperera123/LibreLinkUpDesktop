@@ -11,15 +11,17 @@
   <description>
     <p>
       This is a desktop application that fetches your blood sugar from LibreLinkUp.
+    </p>
+    <p>
       <b>Features of LibreLinkUpDesktop:</b>
-      <ul>
+    </p>
+    <ul>
       <li>Show blood glucose level on your desktop in a little window</li>
       <li>No tracking</li>
       <li>Dark Mode</li>
       <li>Libre software</li>
       <li>That's it. 🩸</li>
-      </ul>
-    </p>
+    </ul>
   </description>
 
   <launchable type="desktop-id">rocks.poopjournal.librelinkupdesktop.desktop</launchable>
