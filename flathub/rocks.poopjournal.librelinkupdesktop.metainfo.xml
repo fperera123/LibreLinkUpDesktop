@@ -8,15 +8,19 @@
   <metadata_license>MIT</metadata_license>
   <project_license>Apache-2.0</project_license>
 
-  <supports>
-    <control>pointing</control>
-    <control>keyboard</control>
-    <control>touch</control>
-  </supports>
-
   <description>
     <p>
-      This is a desktop application that fetches your blood sugar from LibreLinkUp
+      This is a desktop application that fetches your blood sugar from LibreLinkUp.
+      <br><br>
+      <b>Features of LibreLinkUpDesktop:</b>
+      <ul>
+      <li>Show blood glucose level on your desktop in a little window</li>
+      <li>No tracking</li>
+      <li>Dark Mode</li>
+      <li>Libre software</li>
+      <li>That's it. 🩸</li>
+      </ul>
+      <br>
     </p>
   </description>
 
