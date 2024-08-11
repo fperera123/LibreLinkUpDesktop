@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <name>LibreLinkUpDesktop</name>
   <id>rocks.poopjournal.librelinkupdesktop</id>
+
+  <name>LibreLinkUpDesktop</name>
   <summary>This is a desktop application that fetches your blood sugar from LibreLinkUp</summary>
 
   <metadata_license>MIT</metadata_license>
@@ -10,30 +11,20 @@
   <description>
     <p>
       This is a desktop application that fetches your blood sugar from LibreLinkUp.
-      <br><br>
-      <b>Features of LibreLinkUpDesktop:</b>
-      <ul>
+    </p>
+    <p>
+      Features of LibreLinkUpDesktop
+    </p>
+    <ul>
       <li>Show blood glucose level on your desktop in a little window</li>
       <li>No tracking</li>
       <li>Dark Mode</li>
       <li>Libre software</li>
       <li>That's it. 🩸</li>
-      </ul>
-      <br>
-    </p>
+    </ul>
   </description>
 
-  <url type="homepage">https://github.com/Crazy-Marvin/LibreLinkUpDesktop</url>
-  <url type="vcs-browser">https://github.com/Crazy-Marvin/LibreLinkUpDesktop/</url>
-  <url type="translate">https://hosted.weblate.org/engage/librelinkupdesktop/</url>
-  <url type="contact">https://poopjournal.rocks/blog/contact/</url>
-  <url type="donation">https://poopjournal.rocks/donate/</url>
-  <url type="bugtracker">https://github.com/Crazy-Marvin/LibreLinkUpDesktop/issues</url>
-
-  <branding>
-  <color type="primary" scheme_preference="light">#FF3300</color>
-  <color type="primary" scheme_preference="dark">#FF4C20</color>
-  </branding>
+  <launchable type="desktop-id">rocks.poopjournal.librelinkupdesktop.desktop</launchable>
 
   <screenshots>
     <screenshot type="default">
@@ -50,7 +41,7 @@
     </screenshot>
   </screenshots>
 
- <keywords>
+  <keywords>
     <keyword translate="no">diabetes</keyword>
     <keyword translate="no">librelink</keyword>
     <keyword translate="no">librelinkup</keyword>
@@ -67,9 +58,14 @@
   </releases>
   <content_rating type="oars-1.1"/>
 
+  <url type="homepage">https://github.com/Crazy-Marvin/LibreLinkUpDesktop</url>
+  <url type="vcs-browser">https://github.com/Crazy-Marvin/LibreLinkUpDesktop/</url>
+  <url type="translate">https://hosted.weblate.org/engage/librelinkupdesktop/</url>
+  <url type="contact">https://poopjournal.rocks/blog/contact/</url>
+  <url type="donation">https://poopjournal.rocks/donate/</url>
+  <url type="bugtracker">https://github.com/Crazy-Marvin/LibreLinkUpDesktop/issues</url>
+
   <developer id="rocks.poopjournal">
     <name>Crazy Marvin &amp; Contributors</name>
   </developer>
-
-  <launchable type="desktop-id">rocks.poopjournal.librelinkupdesktop.desktop</launchable>
 </component>
