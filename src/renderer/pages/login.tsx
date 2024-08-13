@@ -165,7 +165,7 @@ export default function LoginPage() {
               />
             </div>
             <div className="flex justify-center mt-20">
-              <Button type="submit" className="w-48">{ t('LogIn') }</Button>
+              <Button type="submit" className="w-48">{ t('Login') }</Button>
             </div>
           </div>
         </form>
