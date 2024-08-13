@@ -46,7 +46,8 @@ export function getUserValue(value: number): number {
   }
 
   if (resultUnit === 'mmol/L') {
-    return Math.round(value / 18.0182)
+    const convertedValue = value / 18.0182
+    return parseFloat(convertedValue.toFixed(1))
   }
 
   throw new Error(`Unsupported result unit: ${resultUnit}`)
