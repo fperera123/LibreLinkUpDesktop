@@ -99,7 +99,7 @@
   },
   "devDependencies": {
     "@electron/notarize": "^2.4.0",
-    "@electron/packager": "^18.3.3",
+    "@electron/packager": "^18.3.4",
     "@electron/rebuild": "^3.6.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
     "@svgr/webpack": "^8.1.0",
