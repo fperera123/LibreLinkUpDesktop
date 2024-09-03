@@ -6,6 +6,7 @@ import "@/globals.css"
 import "@/custom.css"
 import "@/i18n/config"
 import { useEffect } from "react"
+import { getWindowMode, setLocalStorageWindowMode } from "@/lib/utils";
 
 export default function App() {
   const token = useAuthStore((state) => state.token)
@@ -20,6 +21,18 @@ export default function App() {
     return () => {
       unsubscribe();
     };
+  }, []);
+
+
+  useEffect(() => {
+    async function fetchAndStoreWindowMode() {
+      const mode = await getWindowMode();
+      console.log('fetchWindowMode', mode);
+
+      setLocalStorageWindowMode(mode);
+    }
+
+    fetchAndStoreWindowMode();
   }, []);
 
   return (

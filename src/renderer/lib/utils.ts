@@ -10,8 +10,24 @@ export async function openFile(type: string, folder: string, group: string, file
   await window.electron.ipcRenderer.invoke('ipc-open-file', type, folder, group, filename)
 }
 
-export function openNewWindow(path: string, width: number, height: number) {
-  window.electron.ipcRenderer.sendMessage('open-new-window', path, width, height)
+export async function openNewWindow(path: string, width: number, height: number) {
+ await window.electron.ipcRenderer.sendMessage('open-new-window', path, width, height)
+}
+
+export async function setWindowMode(mode: string) {
+  await window.electron.ipcRenderer.sendMessage('set-window-mode', mode)
+}
+
+export async function getWindowMode() {
+  return await window.electron.ipcRenderer.invoke('get-window-mode')
+}
+
+export async function setLocalStorageWindowMode(mode: string) {
+  await localStorage.setItem('windowMode', mode);
+}
+
+export async function getLocalStorageWindowMode(): Promise<string> {
+  return await localStorage.getItem('windowMode') as string;
 }
 
 export async function setRedirectTo (path: string) {
