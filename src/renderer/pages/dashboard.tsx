@@ -76,11 +76,11 @@ export default function DashboardPage() {
         graphData?.glucoseMeasurement?.ValueInMgPerDl ?? 1,
         graphData?.targetLow ?? 1,
         graphData?.targetHigh ?? 1
-      )} flex justify-center items-center`}
+      )} flex justify-center items-center draggable`}
     >
       <button
         onClick={() => openSettings('/settings/general')}
-        className="absolute top-5 right-5 hover:bg-white/20 p-2 rounded-md transition-all"
+        className="absolute top-5 right-5 hover:bg-white/20 p-2 rounded-md transition-all no-draggable"
       >
         <GearIcon className="text-white h-6 w-6" />
       </button>

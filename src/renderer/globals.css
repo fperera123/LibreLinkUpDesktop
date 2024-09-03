@@ -48,3 +48,11 @@
     --ring: 12 100% 50%;
   }
 }
+
+.draggable{
+  -webkit-app-region: drag;
+}
+
+.no-draggable{
+  -webkit-app-region: no-drag;
+}
