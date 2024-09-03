@@ -96,7 +96,7 @@ const createWindow = async () => {
   // new AppUpdater()
 }
 
-const getWindowOptions = (windowMode: 'overlay' | 'windowed'): Electron.BrowserWindowConstructorOptions => {
+const getWindowOptions = (windowMode: 'overlay' | 'windowed' | 'overlayTransparent'): Electron.BrowserWindowConstructorOptions => {
 
   const RESOURCES_PATH = app.isPackaged
     ? path.join(process.resourcesPath, 'assets')
@@ -110,6 +110,8 @@ const getWindowOptions = (windowMode: 'overlay' | 'windowed'): Electron.BrowserW
     show: false,
     width: 1024,
     height: 728,
+    minWidth: 200,
+    minHeight: 45,
     icon: getAssetPath('icon.png'),
     webPreferences: {
       webSecurity: false,
@@ -129,9 +131,19 @@ const getWindowOptions = (windowMode: 'overlay' | 'windowed'): Electron.BrowserW
       height: 600,
       alwaysOnTop: true,
       frame: false,
-      // transparent: true,
     };
-  } else if (windowMode === 'windowed') {
+  }
+  if (windowMode === 'overlayTransparent') {
+    return {
+      ...baseOptions,
+      width: 800,
+      height: 600,
+      alwaysOnTop: true,
+      frame: false,
+      transparent: true,
+    };
+  }
+  else if (windowMode === 'windowed') {
     return {
       ...baseOptions,
       frame: true,

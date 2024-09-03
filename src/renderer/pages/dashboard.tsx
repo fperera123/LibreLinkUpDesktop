@@ -7,7 +7,7 @@ import { GearIcon } from "@radix-ui/react-icons"
 import { useNavigate } from "react-router-dom"
 import { LoadingScreen } from "@/components/ui/loading"
 import { useClearSession } from "@/hooks/session"
-import { openNewWindow, setRedirectTo, getUserValue, getUserUnit } from "@/lib/utils"
+import { openNewWindow, setRedirectTo, getUserValue, getUserUnit, getLocalStorageWindowMode } from "@/lib/utils"
 
 const LOW = 70;
 const HIGH = 240;
@@ -66,27 +66,50 @@ export default function DashboardPage() {
     openNewWindow(path, 1024, 768)
   }
 
+  const [currentWindowMode, setCurrentWindowMode] = useState<null | string>(null);
+  useEffect(() => {
+    const fetchWindowMode = async () => {
+      const mode = await getLocalStorageWindowMode();
+      setCurrentWindowMode(mode);
+
+      if (mode === 'overlayTransparent') {
+        document.body.style.background = 'transparent';
+      } else {
+        document.body.style.background = '';
+      }
+    };
+    fetchWindowMode();
+  }, []);
+
   if (!isReady) {
     return <LoadingScreen />
   }
 
   return (
     <BaseLayout
-      className={`${getColor(
-        graphData?.glucoseMeasurement?.ValueInMgPerDl ?? 1,
-        graphData?.targetLow ?? 1,
-        graphData?.targetHigh ?? 1
-      )} flex justify-center items-center draggable`}
+      className={`${
+        currentWindowMode === 'overlayTransparent'
+          ? 'transparent'
+          : getColor(
+              graphData?.glucoseMeasurement?.ValueInMgPerDl ?? 1,
+              graphData?.targetLow ?? 1,
+              graphData?.targetHigh ?? 1
+            )
+      } flex justify-center items-center draggable`}
     >
       <button
         onClick={() => openSettings('/settings/general')}
-        className="absolute 2xs:top-5 2xs:right-5 right-0 top-0 hover:bg-white/20 p-2 rounded-md transition-all no-draggable"
+        className="absolute 2xs:top-5 2xs:right-5 right-0 top-0 outline-none hover:bg-white/20 p-2 rounded-md transition-all no-draggable"
       >
         <GearIcon className="text-white 2xs:h-6 2xs:w-6 w-4 h-4" />
       </button>
       <div className="flex items-center gap-3">
         <p className="text-white font-semibold xs:text-3xl text-xl">{getUserValue(graphData?.glucoseMeasurement?.ValueInMgPerDl) + ' ' + getUserUnit() }</p>
-        <div className="flex justify-center items-center xs:h-12 xs:w-12 h-6 w-6 rounded-full bg-white/25">
+        <div className={`flex justify-center items-center xs:h-12 xs:w-12 h-6 w-6 rounded-full ${currentWindowMode === 'overlayTransparent' ? getColor(
+            graphData?.glucoseMeasurement?.ValueInMgPerDl ?? 1,
+            graphData?.targetLow ?? 1,
+            graphData?.targetHigh ?? 1
+          ) : 'bg-white/25'}`}>
           <TrendArrow className="h-9 w-9 text-white" trend={graphData?.glucoseMeasurement?.TrendArrow ?? 1} />
         </div>
       </div>
