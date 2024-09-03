@@ -136,11 +136,12 @@ const getWindowOptions = (windowMode: 'overlay' | 'windowed' | 'overlayTranspare
   if (windowMode === 'overlayTransparent') {
     return {
       ...baseOptions,
-      width: 800,
-      height: 600,
+      width: 200,
+      height: 45,
       alwaysOnTop: true,
       frame: false,
       transparent: true,
+      resizable: false,
     };
   }
   else if (windowMode === 'windowed') {
