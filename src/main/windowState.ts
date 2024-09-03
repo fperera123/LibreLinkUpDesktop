@@ -14,9 +14,9 @@ export class WindowStateManager {
 
   private state: WindowState;
 
-  constructor(private windowName: string, private defaultState: WindowState) {
+  constructor(private windowName: string, private defaultState: WindowState, private windowMode: 'overlay' | 'windowed') {
     const userDataPath = app.getPath('userData');
-    this.stateFilePath = path.join(userDataPath, `${windowName}-window-state.json`);
+    this.stateFilePath = path.join(userDataPath, `${windowName}-${windowMode}-window-state.json`);
     this.state = this.readState();
   }
 
@@ -60,5 +60,9 @@ export class WindowStateManager {
       ...bounds,
     };
     this.saveState(this.state);
+  }
+
+  public getState(): WindowState {
+    return this.state;
   }
 }
