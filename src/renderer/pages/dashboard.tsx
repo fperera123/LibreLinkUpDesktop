@@ -80,13 +80,13 @@ export default function DashboardPage() {
     >
       <button
         onClick={() => openSettings('/settings/general')}
-        className="absolute top-5 right-5 hover:bg-white/20 p-2 rounded-md transition-all no-draggable"
+        className="absolute 2xs:top-5 2xs:right-5 right-0 top-0 hover:bg-white/20 p-2 rounded-md transition-all no-draggable"
       >
-        <GearIcon className="text-white h-6 w-6" />
+        <GearIcon className="text-white 2xs:h-6 2xs:w-6 w-4 h-4" />
       </button>
       <div className="flex items-center gap-3">
-        <p className="text-white text-3xl font-semibold">{getUserValue(graphData?.glucoseMeasurement?.ValueInMgPerDl) + ' ' + getUserUnit() }</p>
-        <div className="flex justify-center items-center h-12 w-12 rounded-full bg-white/25">
+        <p className="text-white font-semibold xs:text-3xl text-xl">{getUserValue(graphData?.glucoseMeasurement?.ValueInMgPerDl) + ' ' + getUserUnit() }</p>
+        <div className="flex justify-center items-center xs:h-12 xs:w-12 h-6 w-6 rounded-full bg-white/25">
           <TrendArrow className="h-9 w-9 text-white" trend={graphData?.glucoseMeasurement?.TrendArrow ?? 1} />
         </div>
       </div>
