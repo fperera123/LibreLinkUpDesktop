@@ -6,6 +6,7 @@ import { app, BrowserWindow, ipcMain, shell } from "electron"
 import MenuBuilder from "./menu"
 import { resolveHtmlPath } from "./util"
 import { WindowStateManager, WindowState } from './windowState';
+import { WindowModeManager } from "./windowMode";
 import { registerWindowHandlers, destroyWindowHandlers } from "./windowHandler";
 import { registerLogoutHandler, destroyLogoutHandler } from "./logoutHandler";
 import { registerRefreshHandler, destroyRefreshHandler } from "./refreshHandler";
@@ -44,40 +45,24 @@ const installExtensions = async () => {
     .catch(console.log)
 }
 
+const windowModeManager = new WindowModeManager('main-window');
+const windowMode = windowModeManager.getWindowMode();
+
 const createWindow = async () => {
   if (isDebug) {
     await installExtensions()
   }
 
-  const RESOURCES_PATH = app.isPackaged
-    ? path.join(process.resourcesPath, 'assets')
-    : path.join(__dirname, '../../assets')
+  const windowOptions = getWindowOptions(windowMode);
 
-  const getAssetPath = (...paths: string[]): string => {
-    return path.join(RESOURCES_PATH, ...paths)
-  }
-
-  mainWindow = new BrowserWindow({
-    show: false,
-    width: 1024,
-    height: 728,
-    icon: getAssetPath('icon.png'),
-    webPreferences: {
-      webSecurity: false,
-      preload: app.isPackaged
-        ? path.join(__dirname, 'preload.js')
-        : path.join(__dirname, '../../.erb/dll/preload.js'),
-    },
-  })
-
-  mainWindow.isPrimary = true;
+  mainWindow = new BrowserWindow(windowOptions);
 
   // 👉 save window state
   const defaultWindowState: WindowState = {
     width: 1024,
     height: 728,
   };
-  const windowStateManager = new WindowStateManager('main', defaultWindowState);
+  const windowStateManager = new WindowStateManager('main', defaultWindowState, windowMode);
   windowStateManager.manage(mainWindow);
 
   mainWindow.loadURL(resolveHtmlPath('index.html'))
@@ -110,6 +95,52 @@ const createWindow = async () => {
   // eslint-disable-next-line
   // new AppUpdater()
 }
+
+const getWindowOptions = (windowMode: 'overlay' | 'windowed'): Electron.BrowserWindowConstructorOptions => {
+
+  const RESOURCES_PATH = app.isPackaged
+    ? path.join(process.resourcesPath, 'assets')
+    : path.join(__dirname, '../../assets')
+
+  const getAssetPath = (...paths: string[]): string => {
+    return path.join(RESOURCES_PATH, ...paths)
+  }
+
+  const baseOptions: Electron.BrowserWindowConstructorOptions = {
+    show: false,
+    width: 1024,
+    height: 728,
+    icon: getAssetPath('icon.png'),
+    webPreferences: {
+      webSecurity: false,
+      preload: app.isPackaged
+        ? path.join(__dirname, 'preload.js')
+        : path.join(__dirname, '../../.erb/dll/preload.js'),
+    },
+    isPrimary: true,
+    resizable: true,
+    movable: true,
+  };
+
+  if (windowMode === 'overlay') {
+    return {
+      ...baseOptions,
+      width: 800,
+      height: 600,
+      alwaysOnTop: true,
+      frame: false,
+      // transparent: true,
+    };
+  } else if (windowMode === 'windowed') {
+    return {
+      ...baseOptions,
+      frame: true,
+    };
+  }
+
+  return baseOptions;
+}
+
 
 /**
  * Add event listeners...
@@ -152,3 +183,5 @@ ipcMain.handle('ipc-open-file', async (event, ...args) => {
 registerWindowHandlers();
 registerLogoutHandler();
 registerRefreshHandler();
+
+export const getMainWindow = () => mainWindow;
