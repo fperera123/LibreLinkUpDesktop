@@ -143,6 +143,7 @@ const getWindowOptions = (windowMode: 'overlay' | 'windowed' | 'overlayTranspare
       frame: false,
       transparent: true,
       resizable: false,
+      hasShadow: false,
     };
   }
   else if (windowMode === 'windowed') {
