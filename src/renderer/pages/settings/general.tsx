@@ -46,7 +46,6 @@ export default function SettingsGeneralPage() {
 
   const handleSetWindowMode = (value: string) => {
     setWindowMode(value);
-    console.log(value);
   }
 
   const [currentWindowMode, setCurrentWindowMode] = useState<null | string>(null);
