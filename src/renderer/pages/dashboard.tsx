@@ -133,7 +133,7 @@ export default function DashboardPage() {
       ) : (
         <button
           onClick={() => changeToWindowedMode()}
-          className="absolute 2xs:top-5 2xs:right-5 right-0 top-0 outline-none hover:bg-white/20 p-2 rounded-md transition-all no-draggable"
+          className="absolute 2xs:top-2 2xs:right-2 right-0 top-0 outline-none hover:bg-white/20 p-2 rounded-md transition-all no-draggable"
         >
           <EnterFullScreenIcon className="text-white 2xs:h-6 2xs:w-6 w-4 h-4" />
         </button>
