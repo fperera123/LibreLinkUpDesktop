@@ -62,8 +62,11 @@ const createWindow = async () => {
     width: 1024,
     height: 728,
   };
-  const windowStateManager = new WindowStateManager('main', defaultWindowState, windowMode);
-  windowStateManager.manage(mainWindow);
+
+  if(windowMode !== 'overlayTransparent') {
+    const windowStateManager = new WindowStateManager('main', defaultWindowState, windowMode);
+    windowStateManager.manage(mainWindow);
+  }
 
   mainWindow.loadURL(resolveHtmlPath('index.html'))
 
@@ -108,8 +111,6 @@ const getWindowOptions = (windowMode: 'overlay' | 'windowed' | 'overlayTranspare
 
   const baseOptions: Electron.BrowserWindowConstructorOptions = {
     show: false,
-    width: 1024,
-    height: 728,
     minWidth: 200,
     minHeight: 45,
     icon: getAssetPath('icon.png'),
@@ -147,6 +148,8 @@ const getWindowOptions = (windowMode: 'overlay' | 'windowed' | 'overlayTranspare
   else if (windowMode === 'windowed') {
     return {
       ...baseOptions,
+      width: 1024,
+      height: 728,
       frame: true,
     };
   }
