@@ -28,6 +28,11 @@ import { useAuthStore } from "@/stores/auth"
 import { ButtonPopover } from "@/components/ui/button-popover"
 import { QuestionMarkIcon } from "@radix-ui/react-icons"
 import logo from "../../../assets/logo.png"
+import { useEffect } from 'react';
+import {
+  getLocalStorageWindowMode,
+  setWindowMode,
+} from '@/lib/utils';
 
 const formSchema = z.object({
   username: z.string().min(2).max(50),
@@ -72,6 +77,20 @@ export default function LoginPage() {
     i18n.changeLanguage(l)
     setLanguage(l)
   }
+
+  // 👉 overlay mode
+  // if it is in overlay mode automatically switch to windowed mode in this page
+  useEffect(() => {
+    const fetchWindowMode = async () => {
+      const mode = await getLocalStorageWindowMode();
+
+      if(mode != 'windowed'){
+        setWindowMode('windowed');
+      }
+
+    };
+    fetchWindowMode();
+  }, []);
 
   return (
     <PublicLayout
