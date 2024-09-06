@@ -12,7 +12,7 @@ export class WindowModeManager {
     console.log('filePath', this.filePath);
   }
 
-  getWindowMode(): 'overlay' | 'windowed' {
+  getWindowMode(): 'overlay' | 'windowed' | 'overlayTransparent' {
     try {
       const data = fs.readFileSync(this.filePath, 'utf8');
       const parsed = JSON.parse(data);
