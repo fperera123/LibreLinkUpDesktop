@@ -11,9 +11,10 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { useAuthStore } from "@/stores/auth"
-import { countries, languages, themes, resultUnits } from "@/config/app"
+import { countries, languages, themes, resultUnits, windowModes } from "@/config/app"
 import { useTranslation } from "react-i18next"
-import { setRedirectTo, sendRefreshPrimaryWindow } from "@/lib/utils"
+import { setRedirectTo, sendRefreshPrimaryWindow, setWindowMode, getLocalStorageWindowMode } from "@/lib/utils"
+import { useEffect, useState } from 'react';
 
 export default function SettingsGeneralPage() {
   const navigate = useNavigate()
@@ -38,14 +39,27 @@ export default function SettingsGeneralPage() {
     setLanguage(l)
   }
 
-  const handleSetResultUnit = (value) => {
+  const handleSetResultUnit = (value: string) => {
     setResultUnit(value);
     sendRefreshPrimaryWindow();
   }
 
+  const handleSetWindowMode = (value: string) => {
+    setWindowMode(value);
+  }
+
+  const [currentWindowMode, setCurrentWindowMode] = useState<null | string>(null);
+  useEffect(() => {
+    const fetchWindowMode = async () => {
+      const mode = await getLocalStorageWindowMode();
+      setCurrentWindowMode(mode);
+    };
+    fetchWindowMode();
+  }, []);
+
   return (
     <SettingsLayout>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         <div>
           <p className="text-foreground/30 text-xs mb-2">{t('Theme')}</p>
           <Select onValueChange={setAndRefreshTheme} defaultValue={theme ?? ''}>
@@ -54,21 +68,6 @@ export default function SettingsGeneralPage() {
             </SelectTrigger>
             <SelectContent>
               {themes.map(item => (
-                <SelectItem value={item.value} key={item.value}>
-                  {t(item.label)}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <div>
-          <p className="text-foreground/30 text-xs mb-2">{t('Unit')}</p>
-          <Select onValueChange={handleSetResultUnit} defaultValue={resultUnit ?? 'mg/dL'}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select Unit" />
-            </SelectTrigger>
-            <SelectContent>
-              {resultUnits.map(item => (
                 <SelectItem value={item.value} key={item.value}>
                   {t(item.label)}
                 </SelectItem>
@@ -101,6 +100,36 @@ export default function SettingsGeneralPage() {
               {languages.map(lan => (
                 <SelectItem value={lan.value} key={lan.value}>
                   {t(lan.label)}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <div>
+          <p className="text-foreground/30 text-xs mb-2">{t('Window Mode')}</p>
+          <Select key={currentWindowMode} onValueChange={handleSetWindowMode} defaultValue={currentWindowMode ?? 'windowed'}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select Mode" />
+            </SelectTrigger>
+            <SelectContent>
+              {windowModes.map(item => (
+                <SelectItem value={item.value} key={item.value}>
+                  {t(item.label)}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <div>
+          <p className="text-foreground/30 text-xs mb-2">{t('Unit')}</p>
+          <Select onValueChange={handleSetResultUnit} defaultValue={resultUnit ?? 'mg/dL'}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select Unit" />
+            </SelectTrigger>
+            <SelectContent>
+              {resultUnits.map(item => (
+                <SelectItem value={item.value} key={item.value}>
+                  {t(item.label)}
                 </SelectItem>
               ))}
             </SelectContent>

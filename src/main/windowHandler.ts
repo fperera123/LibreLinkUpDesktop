@@ -1,6 +1,7 @@
 import { BrowserWindow, ipcMain, app } from 'electron';
 import path from 'path';
 import { resolveHtmlPath } from './util';
+import { WindowModeManager } from './windowMode';
 
 interface WindowCache {
   [url: string]: BrowserWindow | undefined;
@@ -8,6 +9,9 @@ interface WindowCache {
 
 export const registerWindowHandlers = () => {
   const windowCache: WindowCache = {};
+
+  const windowModeManager = new WindowModeManager('main-window');
+
 
   // 👉 register window handlers
   ipcMain.on('open-new-window', (event, url, width, height) => {
@@ -40,9 +44,23 @@ export const registerWindowHandlers = () => {
     });
 
   });
+
+  ipcMain.on('set-window-mode', (event, mode: 'overlay' | 'windowed') => {
+    windowModeManager.setWindowMode(mode);
+
+    // in order to change window options we need to restart
+    app.relaunch();
+    app.exit();
+  });
+
+  ipcMain.handle('get-window-mode', () => {
+    return windowModeManager.getWindowMode();
+  });
 };
 
 export const destroyWindowHandlers = () => {
   // 👉 destroy window handlers
   ipcMain.removeAllListeners('open-new-window');
+  ipcMain.removeAllListeners('set-window-mode');
+  ipcMain.removeAllListeners('get-window-mode');
 };

@@ -49,9 +49,25 @@ const resultUnits: DropdownConfigType[] = [
   },
 ];
 
+const windowModes: DropdownConfigType[] = [
+  {
+    label: 'Overlay',
+    value: 'overlay',
+  },
+  {
+    label: 'Overlay (Transparent)',
+    value: 'overlayTransparent',
+  },
+  {
+    label: 'Windowed',
+    value: 'windowed',
+  },
+];
+
 export {
   countries,
   languages,
   themes,
   resultUnits,
+  windowModes,
 }
