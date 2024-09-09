@@ -42,5 +42,15 @@
   "SelectCountry": "Select Country",
   "SelectLanguage": "Select Language",
   "Theme": "Theme",
-  "Unit": "Unit"
+  "Unit": "Unit",
+
+  "SelectTheme" : "Select Theme",
+  "SelectUnit" : "Select Unit",
+  "SelectMode" : "Select Mode",
+  "WindowMode" : "Window Mode",
+
+  "Overlay" : "Overlay",
+  "Overlay (Transparent)" : "Overlay (Transparent)",
+  "Windowed": "Windowed"
+
 }

@@ -64,7 +64,7 @@ export default function SettingsGeneralPage() {
           <p className="text-foreground/30 text-xs mb-2">{t('Theme')}</p>
           <Select onValueChange={setAndRefreshTheme} defaultValue={theme ?? ''}>
             <SelectTrigger>
-              <SelectValue placeholder="Select Theme" />
+              <SelectValue placeholder={t("SelectTheme")} />
             </SelectTrigger>
             <SelectContent>
               {themes.map(item => (
@@ -79,7 +79,7 @@ export default function SettingsGeneralPage() {
           <p className="text-foreground/30 text-xs mb-2">{t('Country')}</p>
           <Select onValueChange={setCountry} defaultValue={country ?? ''}>
             <SelectTrigger>
-              <SelectValue placeholder="Select Country" />
+              <SelectValue placeholder={t("SelectCountry")} />
             </SelectTrigger>
             <SelectContent>
               {countries.map(coun => (
@@ -94,7 +94,7 @@ export default function SettingsGeneralPage() {
           <p className="text-foreground/30 text-xs mb-2">{t('Language')}</p>
           <Select onValueChange={setAndRefreshLanguage} defaultValue={language ?? ''}>
             <SelectTrigger>
-              <SelectValue placeholder="Select Language" />
+              <SelectValue placeholder={t("SelectLanguage")} />
             </SelectTrigger>
             <SelectContent>
               {languages.map(lan => (
@@ -106,10 +106,10 @@ export default function SettingsGeneralPage() {
           </Select>
         </div>
         <div>
-          <p className="text-foreground/30 text-xs mb-2">{t('Window Mode')}</p>
+          <p className="text-foreground/30 text-xs mb-2">{t('WindowMode')}</p>
           <Select key={currentWindowMode} onValueChange={handleSetWindowMode} defaultValue={currentWindowMode ?? 'windowed'}>
             <SelectTrigger>
-              <SelectValue placeholder="Select Mode" />
+              <SelectValue placeholder={("SelectMode")} />
             </SelectTrigger>
             <SelectContent>
               {windowModes.map(item => (
@@ -124,7 +124,7 @@ export default function SettingsGeneralPage() {
           <p className="text-foreground/30 text-xs mb-2">{t('Unit')}</p>
           <Select onValueChange={handleSetResultUnit} defaultValue={resultUnit ?? 'mg/dL'}>
             <SelectTrigger>
-              <SelectValue placeholder="Select Unit" />
+              <SelectValue placeholder={("SelectUnit")} />
             </SelectTrigger>
             <SelectContent>
               {resultUnits.map(item => (
