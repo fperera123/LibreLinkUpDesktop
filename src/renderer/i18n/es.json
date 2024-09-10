@@ -36,5 +36,11 @@
     "Last Name": "Apellido/s",
     "System": "Sistema",
     "Unit": "Unidad",
-    "Theme": "Tema"
+    "Theme": "Tema",
+    "Overlay": "Superposición",
+    "WindowMode": "Modo ventana",
+    "SelectMode": "Seleccionar modo",
+    "SelectTheme": "Seleccionar tema",
+    "SelectUnit": "Seleccionar unidad",
+    "Overlay (Transparent)": "Superposición (Transparente)"
 }
