@@ -17,15 +17,15 @@ const countries: DropdownConfigType[] = [
 ]
 
 const languages: DropdownConfigType[] = [
-  { value: 'de', label: 'German' },
-  { value: 'en', label: 'English' },
-  { value: 'si', label: 'Sinhala' },
-  { value: 'no', label: 'Norwegian' },
-  { value: 'es', label: 'Spanish' },
-  { value: 'cs', label: 'Czech' },
-  { value: 'ru', label: 'Russian' },
   { value: 'bs', label: 'Bosnian' },
+  { value: 'cs', label: 'Czech' },
+  { value: 'de', label: 'German' },
   { value: 'el', label: 'Greek' },
+  { value: 'en', label: 'English' },
+  { value: 'no', label: 'Norwegian' },
+  { value: 'ru', label: 'Russian' },
+  { value: 'si', label: 'Sinhala' },
+  { value: 'es', label: 'Spanish' }
 ]
 
 const themes: DropdownConfigType[] = [
