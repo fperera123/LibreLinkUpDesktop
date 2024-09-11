@@ -21,6 +21,11 @@ const languages: DropdownConfigType[] = [
   { value: 'en', label: 'English' },
   { value: 'si', label: 'Sinhala' },
   { value: 'no', label: 'Norwegian' },
+  { value: 'es', label: 'Spanish' },
+  { value: 'cs', label: 'Czech' },
+  { value: 'ru', label: 'Russian' },
+  { value: 'bs', label: 'Bosnian' },
+  { value: 'el', label: 'Greek' },
 ]
 
 const themes: DropdownConfigType[] = [

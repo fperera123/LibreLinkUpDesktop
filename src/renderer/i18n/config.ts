@@ -4,6 +4,11 @@ import en from "./en.json"
 import si from "./si.json"
 import no from "./no.json"
 import de from "./de.json"
+import es from "./es.json"
+import cs from "./cs.json"
+import ru from "./ru.json"
+import bs from "./bs.json"
+import el from "./el.json"
 
 i18next.use(initReactI18next).init({
   // lng: 'en', // if you're using a language detector, do not define the lng option
@@ -21,6 +26,21 @@ i18next.use(initReactI18next).init({
     },
     de: {
       translation: de,
+    },
+    es: {
+      translation: es,
+    },
+    cs: {
+      translation: cs,
+    },
+    ru: {
+      translation: ru,
+    },
+    bs: {
+      translation: bs,
+    },
+    el: {
+      translation: el,
     },
   },
 })
