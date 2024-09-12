@@ -43,5 +43,10 @@
     "getCredentialsStep2": "Uložte si přihlašovací údaje do správce hesel. Můžete je použít pro sebe nebo je můžete s někým sdílet.",
     "Password": "Heslo",
     "Language": "Jazyk",
-    "Theme": "Vzhled"
+    "Theme": "Vzhled",
+    "Spanish": "Španělština",
+    "Czech": "Čeština",
+    "Bosnian": "Bosenský",
+    "Greek": "Řecký",
+    "Russian": "Ruština"
 }
