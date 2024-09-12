@@ -43,5 +43,10 @@
     "WindowMode": "Fenstermodus",
     "Overlay (Transparent)": "Overlay (transparent)",
     "Windowed": "Festes Fenster",
-    "Overlay": "Overlay (kleines Fenster)"
+    "Overlay": "Overlay (kleines Fenster)",
+    "Bosnian": "Bosnisch",
+    "Greek": "Griechisch",
+    "Spanish": "Spanisch",
+    "Czech": "Tschechisch",
+    "Russian": "Russisch"
 }
