@@ -1,5 +1,6 @@
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Crazy-Marvin/LibreLinkUpDesktop/ci)
 ![License](https://img.shields.io/github/license/Crazy-Marvin/LibreLinkUpDesktop.svg)
+[![Figma Mockups](https://img.shields.io/badge/Figma-black?logo=figma)](https://www.figma.com/file/GpKMB4Qnp2FWi4A9gM19Gf/Untitled?type=design&node-id=0%3A1&mode=design&t=0qRXeUdC0lafjaKt-1)
 [![Last commit](https://img.shields.io/github/last-commit/Crazy-Marvin/LibreLinkUpDesktop.svg?style=flat)](https://github.com/Crazy-Marvin/LibreLinkUpDesktop/commits)
 [![Releases](https://img.shields.io/github/downloads/Crazy-Marvin/LibreLinkUpDesktop/total.svg?style=flat)](https://github.com/Crazy-Marvin/LibreLinkUpDesktop/releases)
 [![Latest tag](https://img.shields.io/github/tag/Crazy-Marvin/LibreLinkUpDesktop.svg?style=flat)](https://github.com/Crazy-Marvin/LibreLinkUpDesktop/tags)
