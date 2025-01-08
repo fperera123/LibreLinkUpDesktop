@@ -27,22 +27,28 @@ export default function DashboardPage() {
   const navigate = useNavigate();
   const token = useAuthStore((state) => state.token);
   const country = useAuthStore((state) => state.country);
+  const accountId = useAuthStore((state) => state.accountId);
   const [graphData, setGraphData] = useState({});
   const [isReady, setIsReady] = useState(false);
 
   const populateGraphData = async () => {
-    const data = await getCGMData({
-      token: token ?? '',
-      country: country ?? '',
-    });
+    try {
+      const data = await getCGMData({
+        token: token ?? '',
+        country: country ?? '',
+        accountId: accountId ?? '',
+      });
 
-    if (data === null) {
-      clearSession();
-      return;
+      if (data === null) {
+        clearSession();
+        return;
+      }
+
+      setGraphData(data);
+      setIsReady(true);
+    } catch (error) {
+      console.log('Unable to getCGMData: ', error);
     }
-
-    setGraphData(data);
-    setIsReady(true);
   };
 
   const getColor = (
