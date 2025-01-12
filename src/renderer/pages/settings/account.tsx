@@ -13,17 +13,26 @@ export default function SettingsAccountPage() {
   const [connection, setConnection] = useState({})
   const token = useAuthStore((state) => state.token)
   const country = useAuthStore((state) => state.country)
+  const accountId = useAuthStore((state) => state.accountId)
 
   const getConnectionData = async () => {
-    const data = await getConnection({ token: token ?? '', country: country ?? '' })
+    try {
+      const data = await getConnection({
+        token: token ?? '',
+        country: country ?? '',
+        accountId: accountId ?? '',
+      });
 
-    if (data === null) {
-      clearSession()
-      return
+      if (data === null) {
+        clearSession();
+        return;
+      }
+
+      setConnection(data);
+    } catch (error) {
+      console.log('Unable to getConnection: ', error);
     }
-
-    setConnection(data)
-  }
+  };
 
   useEffect(() => {
     getConnectionData()
@@ -44,7 +53,6 @@ export default function SettingsAccountPage() {
           <Button onClick={clearSession} className="w-full">Logout</Button>
         </div>
       </div>
-
     </SettingsLayout>
   )
 }

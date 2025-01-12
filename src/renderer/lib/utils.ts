@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { useAuthStore } from '../stores/auth'
+import CryptoJS from 'crypto-js';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -73,4 +74,8 @@ export function getUserUnit(): string {
   const { resultUnit } = useAuthStore.getState()
 
   return resultUnit
+}
+
+export function hash256(input: string): string {
+  return CryptoJS.SHA256(input).toString(CryptoJS.enc.Hex);
 }

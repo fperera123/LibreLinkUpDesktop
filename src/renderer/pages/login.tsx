@@ -59,14 +59,16 @@ export default function LoginPage() {
   const login = useAuthStore((state) => state.login)
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const authToken = await getAuthToken({
+    const authData = await getAuthToken({
       country: values.country,
       username: values.username,
       password: values.password,
     })
 
-    if (authToken) {
-      login(authToken, values.country, values.language)
+    if (authData) {
+      const token = authData?.token || ''
+      const accountId = authData?.accountId || ''
+      login(token, values.country, values.language, accountId)
       navigate('/dashboard')
     } else {
       toast.error("Invalid credentials.")
