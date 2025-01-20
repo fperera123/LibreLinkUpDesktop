@@ -10,6 +10,8 @@ import { WindowModeManager } from "./windowMode";
 import { registerWindowHandlers, destroyWindowHandlers } from "./windowHandler";
 import { registerLogoutHandler, destroyLogoutHandler } from "./logoutHandler";
 import { registerRefreshHandler, destroyRefreshHandler } from "./refreshHandler";
+import { registerAlertHandler, destroyAlertHandler } from "./alertHandler";
+
 // class AppUpdater {
 //   constructor() {
 //     log.transports.file.level = 'info'
@@ -167,6 +169,7 @@ app.on('window-all-closed', () => {
   destroyWindowHandlers();
   destroyLogoutHandler();
   destroyRefreshHandler();
+  destroyAlertHandler();
   // Respect the OSX convention of having the application in memory even
   // after all windows have been closed
   if (process.platform !== 'darwin') {
@@ -200,5 +203,6 @@ ipcMain.handle('ipc-open-file', async (event, ...args) => {
 registerWindowHandlers();
 registerLogoutHandler();
 registerRefreshHandler();
+registerAlertHandler();
 
 export const getMainWindow = () => mainWindow;
