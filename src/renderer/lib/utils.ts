@@ -55,6 +55,14 @@ export function sendRefreshPrimaryWindow() {
   window.electron.ipcRenderer.sendMessage('refresh-primary')
 }
 
+export function triggerWarningAlert(alertOptions: any){
+  window.electron.ipcRenderer.sendMessage('trigger-warning-alerts', alertOptions)
+}
+
+export async function getAlertSoundFile() {
+  return await window.electron.ipcRenderer.invoke('get-alert-sound-file')
+}
+
 export function getUserValue(value: number): number {
   const { resultUnit } = useAuthStore.getState()
 
