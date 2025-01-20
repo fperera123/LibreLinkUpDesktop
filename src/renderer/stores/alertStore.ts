@@ -11,8 +11,8 @@ type AlertSettingsStore = {
 const useAlertStore = create<AlertSettingsStore>()(
   persist(
     (set) => ({
-      visualAlertEnabled: false,
-      audioAlertEnabled: false,
+      visualAlertEnabled: true,
+      audioAlertEnabled: true,
       setVisualAlertEnabled: (value: boolean) => set(() => ({ visualAlertEnabled: value })),
       setAudioAlertEnabled: (value: boolean) => set(() => ({ audioAlertEnabled: value })),
     }),
