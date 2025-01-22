@@ -63,6 +63,12 @@ export async function getAlertSoundFile() {
   return await window.electron.ipcRenderer.invoke('get-alert-sound-file')
 }
 
+export async function uploadCustomAlertSoundFile(sourceFilePath: string){
+  console.log('uploadCustomAlertSoundFile', sourceFilePath);
+
+  return await window.electron.ipcRenderer.invoke('upload-custom-alert-sound', sourceFilePath)
+}
+
 export function getUserValue(value: number): number {
   const { resultUnit } = useAuthStore.getState()
 
