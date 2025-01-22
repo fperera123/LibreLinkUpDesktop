@@ -2,6 +2,7 @@ import { ToggleSwitch } from "@/components/ui/toggle-switch";
 import SettingsLayout from "@/layouts/settings-layout";
 import { useAlertStore } from "@/stores/alertStore";
 import { useTranslation } from "react-i18next";
+import { uploadCustomAlertSoundFile } from "@/lib/utils";
 
 export default function SettingsAlertPage() {
   const { t } = useTranslation();
@@ -15,12 +16,30 @@ export default function SettingsAlertPage() {
 
   const handleVisualAlertChange = (checked: boolean) => {
     setVisualAlertEnabled(checked);
-    console.log(`Visual Alerts ${checked ? "Enabled" : "Disabled"}`);
   };
 
   const handleAudioAlertChange = (checked: boolean) => {
     setAudioAlertEnabled(checked);
-    console.log(`Audio Alerts ${checked ? "Enabled" : "Disabled"}`);
+  };
+
+  // TODO:: use a button and trigger this function
+  const uploadCustomAlertSound = async () => {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = '.mp3';
+    fileInput.onchange = async (event) => {
+      const target = event.target as HTMLInputElement;
+      const file = target?.files ? target.files[0] : null;
+      if (file) {
+        const filePath = file.path;
+        try {
+          await uploadCustomAlertSoundFile(filePath)
+        } catch (error) {
+          console.error('Error uploading custom alert file:', error);
+        }
+      }
+    };
+    fileInput.click();
   };
 
   return (
