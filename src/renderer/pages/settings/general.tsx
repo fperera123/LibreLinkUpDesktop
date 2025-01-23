@@ -15,7 +15,6 @@ import { countries, languages, themes, resultUnits, windowModes } from "@/config
 import { useTranslation } from "react-i18next"
 import { setRedirectTo, sendRefreshPrimaryWindow, setWindowMode, getLocalStorageWindowMode } from "@/lib/utils"
 import { useEffect, useState } from 'react';
-import { ToggleSwitch } from "@/components/ui/toggle-switch";
 
 export default function SettingsGeneralPage() {
   const navigate = useNavigate()
@@ -58,16 +57,23 @@ export default function SettingsGeneralPage() {
     fetchWindowMode();
   }, []);
 
-  const handleToggleButtonChange = (event) => {
-    console.log(event);
-  }
-
   return (
     <SettingsLayout>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         <div>
           <p className="text-foreground/30 text-xs mb-2">{t('Theme')}</p>
-          <ToggleSwitch leftLabel="Light" rightLabel="Dark" onChange={handleToggleButtonChange}/>
+          <Select onValueChange={setAndRefreshTheme} defaultValue={theme ?? ''}>
+            <SelectTrigger>
+              <SelectValue placeholder={t("SelectTheme")} />
+            </SelectTrigger>
+            <SelectContent>
+              {themes.map(item => (
+                <SelectItem value={item.value} key={item.value}>
+                  {t(item.label)}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
         <div>
           <p className="text-foreground/30 text-xs mb-2">{t('Country')}</p>
