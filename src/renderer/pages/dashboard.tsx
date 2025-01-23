@@ -39,7 +39,6 @@ export default function DashboardPage() {
         country: country ?? '',
         accountId: accountId ?? '',
       });
-      console.log('Fetched CGM Data:', data);
 
       if (data === null) {
         clearSession();
