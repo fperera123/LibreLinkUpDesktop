@@ -37,16 +37,17 @@ const getAudioFilePath = () => {
   };
 };
 
-const uploadCustomAlertSoundFile = (sourceFilePath: string) => {
+const uploadCustomAlertSoundFile = (fileData: Array<number>) => {
   const appDataDir = app.getPath('userData');
   const targetFilePath = path.join(appDataDir, 'custom-alert.mp3');
 
   try {
-    fs.copyFileSync(sourceFilePath, targetFilePath);
+    const fileBuffer = Buffer.from(fileData);
+    fs.writeFileSync(targetFilePath, fileBuffer);
     console.log('Custom MP3 file successfully moved to:', targetFilePath);
     return targetFilePath;
   } catch (error) {
-    console.error('Error moving custom MP3 file:', error);
+    console.error('uploadCustomAlertSoundFile custom MP3 file:', error);
     throw new Error('Failed to move custom MP3 file.');
   }
 }
@@ -69,8 +70,8 @@ export const registerAlertHandler = () => {
     return audioFilePath;
   });
 
-  ipcMain.handle('upload-custom-alert-sound', async (event, sourceFilePath) => {
-    const targetFilePath = uploadCustomAlertSoundFile(sourceFilePath);
+  ipcMain.handle('upload-custom-alert-sound', async (event, fileData) => {
+    const targetFilePath = uploadCustomAlertSoundFile(fileData);
     return targetFilePath;
   });
 };

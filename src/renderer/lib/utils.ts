@@ -63,10 +63,11 @@ export async function getAlertSoundFile() {
   return await window.electron.ipcRenderer.invoke('get-alert-sound-file')
 }
 
-export async function uploadCustomAlertSoundFile(sourceFilePath: string){
-  console.log('uploadCustomAlertSoundFile', sourceFilePath);
-
-  return await window.electron.ipcRenderer.invoke('upload-custom-alert-sound', sourceFilePath)
+export async function uploadCustomAlertSoundFile(fileData: Array<number>) {
+  return await window.electron.ipcRenderer.invoke(
+    'upload-custom-alert-sound',
+    fileData,
+  );
 }
 
 export function getUserValue(value: number): number {

@@ -66,12 +66,20 @@ export default function SettingsAlertPage() {
       const target = event.target as HTMLInputElement;
       const file = target?.files ? target.files[0] : null;
       if (file) {
-        const filePath = file.path;
-        try {
-          await uploadCustomAlertSoundFile(filePath);
-        } catch (error) {
-          console.error('Error uploading custom alert file:', error);
-        }
+        const reader = new FileReader();
+        reader.onload = async () => {
+          if (reader.result) {
+            const arrayBuffer = reader.result as ArrayBuffer;
+            const uint8Array = new Uint8Array(arrayBuffer);
+            await uploadCustomAlertSoundFile(Array.from(uint8Array));
+          }
+        };
+
+        reader.onerror = () => {
+          console.error('uploadCustomAlertSound:', reader.error);
+        };
+
+        reader.readAsArrayBuffer(file);
       }
     };
     fileInput.click();
