@@ -18,6 +18,7 @@ import {
   getLocalStorageWindowMode,
   setWindowMode,
 } from '@/lib/utils';
+import { useGlucoseAlerts } from '@/hooks/useGlucoseAlerts';
 
 const LOW = 70;
 const HIGH = 240;
@@ -110,6 +111,16 @@ export default function DashboardPage() {
   const changeToWindowedMode = () => {
     setWindowMode('windowed');
   }
+
+  // 👉 glucose alerts
+
+  const { dispatchAlert } = useGlucoseAlerts();
+
+  useEffect(() => {
+    if (graphData?.glucoseMeasurement?.ValueInMgPerDl) {
+      dispatchAlert(graphData.glucoseMeasurement.ValueInMgPerDl,graphData?.targetLow,graphData?.targetHigh);
+    }
+  }, [graphData])
 
   if (!isReady) {
     return <LoadingScreen />;

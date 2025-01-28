@@ -4,6 +4,7 @@ import LoginPage from "@/pages/login"
 import DashboardPage from "@/pages/dashboard"
 import SettingsGeneralPage from "@/pages/settings/general"
 import SettingsAccountPage from "@/pages/settings/account"
+import SettingsAlertPage from "@/pages/settings/alert"
 
 export default function routes(isloggedIn: boolean) {
   return createMemoryRouter([
@@ -12,5 +13,7 @@ export default function routes(isloggedIn: boolean) {
     { path: "/dashboard",  element: isloggedIn ? <DashboardPage /> : <LoginPage /> },
     { path: "/settings/general",  element: isloggedIn ? <SettingsGeneralPage /> : <LoginPage /> },
     { path: "/settings/account",  element: isloggedIn ? <SettingsAccountPage /> : <LoginPage /> },
+    { path: "/settings/alert",  element: isloggedIn ? <SettingsAlertPage /> : <LoginPage /> },
+
   ])
 }

@@ -10,6 +10,8 @@ import { WindowModeManager } from "./windowMode";
 import { registerWindowHandlers, destroyWindowHandlers } from "./windowHandler";
 import { registerLogoutHandler, destroyLogoutHandler } from "./logoutHandler";
 import { registerRefreshHandler, destroyRefreshHandler } from "./refreshHandler";
+import { registerAlertHandler, destroyAlertHandler } from "./alertHandler";
+
 // class AppUpdater {
 //   constructor() {
 //     log.transports.file.level = 'info'
@@ -56,6 +58,8 @@ const createWindow = async () => {
   const windowOptions = getWindowOptions(windowMode);
 
   mainWindow = new BrowserWindow(windowOptions);
+
+  mainWindow.isPrimary = true;
 
   // 👉 save window state
   const defaultWindowState: WindowState = {
@@ -120,7 +124,6 @@ const getWindowOptions = (windowMode: 'overlay' | 'windowed' | 'overlayTranspare
         ? path.join(__dirname, 'preload.js')
         : path.join(__dirname, '../../.erb/dll/preload.js'),
     },
-    isPrimary: true,
     resizable: true,
     movable: true,
   };
@@ -167,6 +170,7 @@ app.on('window-all-closed', () => {
   destroyWindowHandlers();
   destroyLogoutHandler();
   destroyRefreshHandler();
+  destroyAlertHandler();
   // Respect the OSX convention of having the application in memory even
   // after all windows have been closed
   if (process.platform !== 'darwin') {
@@ -200,5 +204,6 @@ ipcMain.handle('ipc-open-file', async (event, ...args) => {
 registerWindowHandlers();
 registerLogoutHandler();
 registerRefreshHandler();
+registerAlertHandler();
 
 export const getMainWindow = () => mainWindow;

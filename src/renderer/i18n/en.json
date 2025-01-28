@@ -56,6 +56,22 @@
 
   "Overlay" : "Overlay",
   "Overlay (Transparent)" : "Overlay (Transparent)",
-  "Windowed": "Windowed"
+  "Windowed": "Windowed",
 
+  "mmol/L": "mmol/L",
+  "mg/dL": "mg/dL",
+
+  "Alert": "Alert",
+  "ALERT_DESCRIPTION": "LibreLinkUpDesktop can alert you when your blood sugar level is outside of a normal range. Choose how you'll be alerted and adjust the normal range below.",
+  "Bring Window to Front": "Bring Window to Front",
+  "Flash Window": "Flash Window",
+  "Play Sound": "Play Sound",
+  "Use Custom Sound": "Use Custom Sound",
+  "Upload Sound": "Upload Sound",
+  "Custom Alert Sound" : "Custom Alert Sound",
+  "Custom Alert Level": "Custom Alert Level",
+  "Min Value" : "Min Value",
+  "Max Value" : "Max Value",
+  "Enter Value" : "Enter Value",
+  "Apply Changes": "Apply Changes"
 }
