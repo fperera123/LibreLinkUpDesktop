@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { BaseLayout } from "@/layouts/base-layout"
 import { cn } from "@/lib/utils"
-import { ArrowLeftIcon, MixerVerticalIcon, PersonIcon } from "@radix-ui/react-icons"
+import { ArrowLeftIcon, MixerVerticalIcon, PersonIcon, BellIcon } from "@radix-ui/react-icons"
 import { ReactNode } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
@@ -55,6 +55,11 @@ export default function SettingsLayout({ children }: Props) {
             label={t('Account')}
             url="/settings/account"
             icon={<PersonIcon className="mr-3" />}
+          />
+          <SidebarButton
+            label={t('Alert')}
+            url="/settings/alert"
+            icon={<BellIcon className="mr-3" />}
           />
         </div>
         <div className="flex-1 px-6">
