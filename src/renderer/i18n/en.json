@@ -63,6 +63,12 @@
   "On": "On",
   "Off": "Off",
   "Alert": "Alert",
+  "Custom Audio": "Custom Audio",
+  "Override Alert Values": "Override Alert Values",
+  "Alert If Lower Than": "Alert If Lower Than",
+  "Enter Value": "Enter Value",
+  "Alert If Higher Than": "Alert If Higher Than",
+  "Apply Changes": "Apply Changes",
 
   "mmol/L": "mmol/L",
   "mg/dL": "mg/dL"

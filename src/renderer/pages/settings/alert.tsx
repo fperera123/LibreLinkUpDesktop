@@ -79,77 +79,86 @@ export default function SettingsAlertPage() {
 
   return (
     <SettingsLayout>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        <div>
-          <p className="text-foreground/30 text-xs mb-2">
-            {t('Visual Alerts')}
-          </p>
-          <ToggleSwitch
-            checked={visualAlertEnabled}
-            onChange={handleVisualAlertChange}
-            leftLabel={t('Off')}
-            rightLabel={t('On')}
-          />
-        </div>
+    <div className="space-y-6">
+    <div>
+      <p className="text-foreground/30 text-xs mb-2">{t('Visual Alerts')}</p>
+      <ToggleSwitch
+        checked={visualAlertEnabled}
+        onChange={handleVisualAlertChange}
+        leftLabel={t('Off')}
+        rightLabel={t('On')}
+      />
+    </div>
 
-        <div>
-          <p className="text-foreground/30 text-xs mb-2">{t('Audio Alerts')}</p>
-          <ToggleSwitch
-            checked={audioAlertEnabled}
-            onChange={handleAudioAlertChange}
-            leftLabel={t('Off')}
-            rightLabel={t('On')}
-          />
-        </div>
+    <div>
+    <p className="text-foreground/30 text-xs mb-2">{t('Audio Alerts')}</p>
 
-        <div>
-          <p className="text-foreground/30 text-xs mb-2">
-            {t('Override Alert Values')}
-          </p>
-          <ToggleSwitch
-            checked={overrideThreshold}
-            onChange={handleOverrideChange}
-            leftLabel={t('Off')}
-            rightLabel={t('On')}
-          />
-        </div>
+    <div className="flex items-center gap-4">
+    <ToggleSwitch
+      checked={audioAlertEnabled}
+      onChange={handleAudioAlertChange}
+      leftLabel={t('Off')}
+      rightLabel={t('On')}
+    />
+
+    {audioAlertEnabled && (
+      <button
+        onClick={uploadCustomAlertSound}
+        className="px-4 py-2 bg-primary text-white text-sm rounded shadow hover:bg-primary-dark"
+      >
+        {t('Custom Audio')}
+      </button>
+    )}
+  </div>
+</div>
+
+    <div>
+      <p className="text-foreground/30 text-xs mb-2">{t('Override Alert Values')}</p>
+      <div className="flex flex-wrap items-center gap-4">
+        <ToggleSwitch
+          checked={overrideThreshold}
+          onChange={handleOverrideChange}
+          leftLabel={t('Off')}
+          rightLabel={t('On')}
+        />
+        {overrideThreshold && (
+          <>
+            <div>
+              <p className="text-foreground/30 text-xs mb-2">
+                {t('Alert If Lower Than')} ({t('mg/dL')})
+              </p>
+              <Input
+                type="number"
+                placeholder={t('Enter Value')}
+                value={String(customTargetLow)}
+                onChange={handleTargetLowChanged}
+              />
+            </div>
+            <div>
+              <p className="text-foreground/30 text-xs mb-2">
+                {t('Alert If Higher Than')} ({t('mg/dL')})
+              </p>
+              <Input
+                type="number"
+                placeholder={t('Enter Value')}
+                value={String(customTargetHigh)}
+                onChange={handleTargetHighChanged}
+              />
+            </div>
+          </>
+        )}
       </div>
+    </div>
 
-      {overrideThreshold && (
-        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {overrideThreshold && (
           <div>
-            <p className="text-foreground/30 text-xs mb-2">
-              {t('Alert If Lower Than')} ({t('mg/dL')})
-            </p>
-            <Input
-              type="number"
-              placeholder={t('Enter Value')}
-              value={String(customTargetLow)}
-              onChange={handleTargetLowChanged}
-            />
+            <Button onClick={handleApplyChanges}>
+              {t('Apply Changes')}
+            </Button>
           </div>
+    )}
+  </div>
+</SettingsLayout>
 
-          <div>
-            <p className="text-foreground/30 text-xs mb-2">
-              {t('Alert If Higher Than')} ({t('mg/dL')})
-            </p>
-            <Input
-              type="number"
-              value={String(customTargetHigh)}
-              onChange={handleTargetHighChanged}
-              placeholder={t('Enter Value')}
-            />
-          </div>
-        </div>
-      )}
-
-      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <div>
-          <Button onClick={handleApplyChanges} className="w-full">
-            {t('Apply Changes')}
-          </Button>
-        </div>
-      </div>
-    </SettingsLayout>
   );
 }
