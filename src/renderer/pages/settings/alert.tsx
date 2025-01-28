@@ -94,6 +94,9 @@ export default function SettingsAlertPage() {
   return (
     <SettingsLayout>
       <div className="space-y-6">
+        <div className='text-foreground/30'>
+          {t('ALERT_DESCRIPTION')}
+        </div>
         <div>
           <p className="text-foreground/30 text-xs mb-2">
             {t('Visual Alerts')}

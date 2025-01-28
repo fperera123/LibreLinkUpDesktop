@@ -72,5 +72,7 @@
   "Custom Alert Sound" : "Custom Alert Sound",
 
   "mmol/L": "mmol/L",
-  "mg/dL": "mg/dL"
+  "mg/dL": "mg/dL",
+
+  "ALERT_DESCRIPTION": "LibreLinkUpDesktop can alert you when your blood sugar level is outside of a normal range. Choose how you'll be alerted and adjust the normal range below."
 }
