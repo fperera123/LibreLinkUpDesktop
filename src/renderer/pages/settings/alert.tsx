@@ -15,14 +15,16 @@ export default function SettingsAlertPage() {
   const { t } = useTranslation();
 
   const {
-    visualAlertEnabled,
+    bringToFrontEnabled,
+    flashWindowEnabled,
     audioAlertEnabled,
     useCustomSound,
     overrideThreshold,
     customTargetHigh,
     customTargetLow,
 
-    setVisualAlertEnabled,
+    setBringToFrontEnabled,
+    setFlashWindowEnabled,
     setAudioAlertEnabled,
     setUserCustomSoundEnabled,
     setOverrideThreshold,
@@ -30,8 +32,12 @@ export default function SettingsAlertPage() {
     setCustomTargetHigh,
   } = useAlertStore();
 
-  const handleVisualAlertChange = (checked: boolean) => {
-    setVisualAlertEnabled(checked);
+  const handleBringToFrontChange = (checked: boolean) => {
+    setBringToFrontEnabled(checked);
+  };
+
+  const handleFlashWindowChange = (checked: boolean) => {
+    setFlashWindowEnabled(checked);
   };
 
   const handleAudioAlertChange = (checked: boolean) => {
@@ -94,101 +100,89 @@ export default function SettingsAlertPage() {
   return (
     <SettingsLayout>
       <div className="space-y-6">
-        <div className='text-foreground/30'>
-          {t('ALERT_DESCRIPTION')}
-        </div>
-        <div>
-          <p className="text-foreground/30 text-xs mb-2">
-            {t('Visual Alerts')}
-          </p>
+        <div className="text-gray-400">{t('ALERT_DESCRIPTION')}</div>
+
+        <div className="flex flex-row justify-between gap-4">
+          <p className="text-gray-400">{t('Bring Window to Front')}</p>
           <ToggleSwitch
-            checked={visualAlertEnabled}
-            onChange={handleVisualAlertChange}
-            leftLabel={t('Off')}
-            rightLabel={t('On')}
+            checked={bringToFrontEnabled}
+            onChange={handleBringToFrontChange}
           />
         </div>
 
-        <div className="flex flex-row gap-4">
-          <div>
-            <p className="text-foreground/30 text-xs mb-2">
-              {t('Audio Alerts')}
-            </p>
-            <ToggleSwitch
-              checked={audioAlertEnabled}
-              onChange={handleAudioAlertChange}
-              leftLabel={t('Off')}
-              rightLabel={t('On')}
-            />
-          </div>
-          {audioAlertEnabled && (
-            <div>
-              <p className="text-foreground/30 text-xs mb-2">
-                {t('Custom Alert Sound')}
-              </p>
-              <ToggleSwitch
-                checked={useCustomSound}
-                onChange={handleUserCustomSoundChange}
-                leftLabel={t('Off')}
-                rightLabel={t('On')}
-              />
-            </div>
-          )}
-          {useCustomSound && (
-            <div className="flex items-end">
-              <Button onClick={uploadCustomAlertSound}>
-                {' '}
-                {t('Upload Audio')}
-              </Button>
-            </div>
-          )}
+        <div className="flex flex-row justify-between gap-4">
+          <p className="text-gray-400">{t('Flash Window')}</p>
+          <ToggleSwitch
+            checked={flashWindowEnabled}
+            onChange={handleFlashWindowChange}
+          />
         </div>
 
-        <div className="flex flex-row gap-4">
-          <div>
-            <p className="text-foreground/30 text-xs mb-2">
-              {t('Override Alert Values')}
-            </p>
+        <div className="flex flex-row justify-between gap-4">
+          <p className="text-gray-400">{t('Play Sound')}</p>
+          <ToggleSwitch
+            checked={audioAlertEnabled}
+            onChange={handleAudioAlertChange}
+          />
+        </div>
+
+        {audioAlertEnabled && (
+          <div className="flex flex-row justify-between gap-4">
+            <p className="text-gray-400">{t('Use Custom Sound')}</p>
             <ToggleSwitch
-              checked={overrideThreshold}
-              onChange={handleOverrideChange}
-              leftLabel={t('Off')}
-              rightLabel={t('On')}
+              checked={useCustomSound}
+              onChange={handleUserCustomSoundChange}
             />
           </div>
-          {overrideThreshold && (
-            <>
-              <div>
-                <p className="text-foreground/30 text-xs mb-2">
-                  {t('Alert If Lower Than')} ({t('mg/dL')})
-                </p>
-                <Input
-                  type="number"
-                  placeholder={t('Enter Value')}
-                  value={String(customTargetLow)}
-                  onChange={handleTargetLowChanged}
-                />
-              </div>
-              <div>
-                <p className="text-foreground/30 text-xs mb-2">
-                  {t('Alert If Higher Than')} ({t('mg/dL')})
-                </p>
-                <Input
-                  type="number"
-                  placeholder={t('Enter Value')}
-                  value={String(customTargetHigh)}
-                  onChange={handleTargetHighChanged}
-                />
-              </div>
-            </>
-          )}
+        )}
+
+        {audioAlertEnabled && useCustomSound && (
+          <div className="flex flex-row justify-between gap-4">
+            <Button onClick={uploadCustomAlertSound}>
+              {' '}
+              {t('Upload Sound')}
+            </Button>
+          </div>
+        )}
+
+        <div className="flex flex-row justify-between gap-4">
+          <p className="text-gray-400">{t('Custom Alert Level')}</p>
+          <ToggleSwitch
+            checked={overrideThreshold}
+            onChange={handleOverrideChange}
+          />
         </div>
 
         {overrideThreshold && (
-          <div>
-            <Button onClick={handleApplyChanges}>{t('Apply Changes')}</Button>
+          <div className="flex flex-row justify-start gap-4">
+            <div>
+              <p className="text-foreground/30 text-xs mb-2">
+                {t('Min Value')} ({t('mg/dL')})
+              </p>
+              <Input
+                type="number"
+                placeholder={t('Enter Value')}
+                value={String(customTargetLow)}
+                onChange={handleTargetLowChanged}
+              />
+            </div>
+            <div>
+              <p className="text-foreground/30 text-xs mb-2">
+                {t('Max Value')} ({t('mg/dL')})
+              </p>
+              <Input
+                type="number"
+                placeholder={t('Enter Value')}
+                value={String(customTargetHigh)}
+                onChange={handleTargetHighChanged}
+              />
+            </div>
           </div>
         )}
+
+        <div>
+          <Button onClick={handleApplyChanges}>{t('Apply Changes')}</Button>
+        </div>
       </div>
     </SettingsLayout>
   );

@@ -58,21 +58,20 @@
   "Overlay (Transparent)" : "Overlay (Transparent)",
   "Windowed": "Windowed",
 
-  "Visual Alerts": "Visual Alerts",
-  "Audio Alerts": "Audio Alerts",
-  "On": "On",
-  "Off": "Off",
-  "Alert": "Alert",
-  "Upload Audio": "Upload Audio",
-  "Override Alert Values": "Override Alert Values",
-  "Alert If Lower Than": "Alert If Lower Than",
-  "Enter Value": "Enter Value",
-  "Alert If Higher Than": "Alert If Higher Than",
-  "Apply Changes": "Apply Changes",
-  "Custom Alert Sound" : "Custom Alert Sound",
-
   "mmol/L": "mmol/L",
   "mg/dL": "mg/dL",
 
-  "ALERT_DESCRIPTION": "LibreLinkUpDesktop can alert you when your blood sugar level is outside of a normal range. Choose how you'll be alerted and adjust the normal range below."
+  "Alert": "Alert",
+  "ALERT_DESCRIPTION": "LibreLinkUpDesktop can alert you when your blood sugar level is outside of a normal range. Choose how you'll be alerted and adjust the normal range below.",
+  "Bring Window to Front": "Bring Window to Front",
+  "Flash Window": "Flash Window",
+  "Play Sound": "Play Sound",
+  "Use Custom Sound": "Use Custom Sound",
+  "Upload Sound": "Upload Sound",
+  "Custom Alert Sound" : "Custom Alert Sound",
+  "Custom Alert Level": "Custom Alert Level",
+  "Min Value" : "Min Value",
+  "Max Value" : "Max Value",
+  "Enter Value" : "Enter Value",
+  "Apply Changes": "Apply Changes"
 }
