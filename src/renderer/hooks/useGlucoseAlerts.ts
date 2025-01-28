@@ -5,7 +5,8 @@ import { useAlertStore } from '@/stores/alertStore';
 
 export const useGlucoseAlerts = () => {
   const {
-    visualAlertEnabled,
+    bringToFrontEnabled,
+    flashWindowEnabled,
     audioAlertEnabled,
     useCustomSound,
     overrideThreshold,
@@ -49,7 +50,8 @@ export const useGlucoseAlerts = () => {
           (glucoseLevel < lowThreshold || glucoseLevel > highThreshold)
         ) {
           triggerWarningAlert({
-            visualAlertEnabled: visualAlertEnabled,
+            bringToFrontEnabled,
+            flashWindowEnabled,
           });
 
           if (audioAlertEnabled) {
@@ -71,7 +73,8 @@ export const useGlucoseAlerts = () => {
       }
     };
   }, [
-    visualAlertEnabled,
+    bringToFrontEnabled,
+    flashWindowEnabled,
     audioAlertEnabled,
     useCustomSound,
     overrideThreshold,

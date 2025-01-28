@@ -58,9 +58,10 @@ export const registerAlertHandler = () => {
 
   ipcMain.on("trigger-warning-alerts", (event, alertOptions) => {
     const mainWindow = getMainWindow();
-
-    if (mainWindow && alertOptions.visualAlertEnabled) {
+    if (mainWindow && alertOptions.bringToFrontEnabled) {
       mainWindow.focus();
+    }
+    if(mainWindow && alertOptions.flashWindowEnabled) {
       mainWindow.flashFrame(true);
     }
   });
