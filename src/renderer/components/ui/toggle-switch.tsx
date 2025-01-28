@@ -7,7 +7,7 @@ const toggleVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-red-300 dark:bg-destructive peer-checked:bg-primary",
+        default: "bg-red-300 dark:bg-secondary peer-checked:bg-primary",
         secondary: "bg-secondary peer-checked:bg-secondary-foreground",
         destructive: "bg-destructive peer-checked:bg-destructive-foreground",
         outline:
