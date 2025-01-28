@@ -59,6 +59,8 @@ const createWindow = async () => {
 
   mainWindow = new BrowserWindow(windowOptions);
 
+  mainWindow.isPrimary = true;
+
   // 👉 save window state
   const defaultWindowState: WindowState = {
     width: 1024,
@@ -122,7 +124,6 @@ const getWindowOptions = (windowMode: 'overlay' | 'windowed' | 'overlayTranspare
         ? path.join(__dirname, 'preload.js')
         : path.join(__dirname, '../../.erb/dll/preload.js'),
     },
-    isPrimary: true,
     resizable: true,
     movable: true,
   };

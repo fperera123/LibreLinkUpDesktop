@@ -20,4 +20,5 @@ export const registerRefreshHandler = () => {
 
 export const destroyRefreshHandler = () => {
   ipcMain.removeAllListeners('refresh-all');
+  ipcMain.removeAllListeners('refresh-primary')
 }
