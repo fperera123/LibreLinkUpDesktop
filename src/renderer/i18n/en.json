@@ -56,6 +56,14 @@
 
   "Overlay" : "Overlay",
   "Overlay (Transparent)" : "Overlay (Transparent)",
-  "Windowed": "Windowed"
+  "Windowed": "Windowed",
 
+  "Visual Alerts": "Visual Alerts",
+  "Audio Alerts": "Audio Alerts",
+  "On": "On",
+  "Off": "Off",
+  "Alert": "Alert",
+
+  "mmol/L": "mmol/L",
+  "mg/dL": "mg/dL"
 }

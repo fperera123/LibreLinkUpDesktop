@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { ToggleSwitch } from "@/components/ui/toggle-switch";
 import SettingsLayout from "@/layouts/settings-layout";
 import { useAlertStore } from "@/stores/alertStore";
@@ -13,6 +14,10 @@ export default function SettingsAlertPage() {
     setVisualAlertEnabled,
     setAudioAlertEnabled,
   } = useAlertStore();
+
+  const [overrideThreshold, setOverrideThreshold] = useState(false);
+  const [customTargetLow, setCustomTargetLow] = useState("");
+  const [customTargetHigh, setCustomTargetHigh] = useState("");
 
   const handleVisualAlertChange = (checked: boolean) => {
     setVisualAlertEnabled(checked);
@@ -42,10 +47,14 @@ export default function SettingsAlertPage() {
     fileInput.click();
   };
 
+  const handleOverrideChange = (checked: boolean) => {
+    setOverrideThreshold(checked);
+    console.log(`Override Alert Values ${checked ? "Enabled" : "Disabled"}`);
+  };
+
   return (
     <SettingsLayout>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-
         <div>
           <p className="text-foreground/30 text-xs mb-2">{t("Visual Alerts")}</p>
           <ToggleSwitch
@@ -65,7 +74,47 @@ export default function SettingsAlertPage() {
             rightLabel={t("On")}
           />
         </div>
+
+        <div>
+          <p className="text-foreground/30 text-xs mb-2">{t("Override Alert Values")}</p>
+          <ToggleSwitch
+            checked={overrideThreshold}
+            onChange={handleOverrideChange}
+            leftLabel={t("Off")}
+            rightLabel={t("On")}
+          />
+        </div>
       </div>
+
+      {overrideThreshold && (
+        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <label className="text-sm text-foreground mb-1 block">
+              {t("Low Alert Value")}
+            </label>
+            <input
+              type="number"
+              value={customTargetLow}
+              onChange={(e) => setCustomTargetLow(e.target.value)}
+              placeholder={t("Enter low alert value")}
+              className="border rounded px-3 py-2 w-full"
+            />
+          </div>
+
+          <div>
+            <label className="text-sm text-foreground mb-1 block">
+              {t("High Alert Value")}
+            </label>
+            <input
+              type="number"
+              value={customTargetHigh}
+              onChange={(e) => setCustomTargetHigh(e.target.value)}
+              placeholder={t("Enter high alert value")}
+              className="border rounded px-3 py-2 w-full"
+            />
+          </div>
+        </div>
+      )}
     </SettingsLayout>
   );
 }
