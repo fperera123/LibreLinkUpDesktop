@@ -48,5 +48,20 @@
     "Greek": "Griechisch",
     "Spanish": "Spanisch",
     "Czech": "Tschechisch",
-    "Russian": "Russisch"
+    "Russian": "Russisch",
+    "Bring Window to Front": "Fenster nach vorne bringen",
+    "Flash Window": "Fenster blinken lassen",
+    "Play Sound": "Ton abspielen",
+    "Custom Alert Level": "Eigener Warnbereich",
+    "Min Value": "Niedriger Wert",
+    "Apply Changes": "Änderungen übernehmen",
+    "Use Custom Sound": "Eigenen Ton verwenden",
+    "mg/dL": "mg/dL",
+    "Enter Value": "Wert eintragen",
+    "mmol/L": "mmol/L",
+    "Upload Sound": "Ton hinterlegen",
+    "Custom Alert Sound": "Eigener Alarmton",
+    "ALERT_DESCRIPTION": "LibreLinkUpDesktop kann warnen, wenn der Blutzuckerspiegel außerhalb des normalen Bereichs liegt. Der Zielbereich wird von LibreLinkUp übernommen und kann unten bei Bedarf geändert werden.",
+    "Alert": "Alarm",
+    "Max Value": "Hoher Wert"
 }
