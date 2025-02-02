@@ -22,11 +22,16 @@ const languages: DropdownConfigType[] = [
   { value: 'de', label: 'German' },
   { value: 'el', label: 'Greek' },
   { value: 'en', label: 'English' },
+  { value: 'fr', label: 'French' },
+  { value: 'it', label: 'Italian' },
   { value: 'no', label: 'Norwegian' },
   { value: 'ru', label: 'Russian' },
   { value: 'si', label: 'Sinhala' },
-  { value: 'es', label: 'Spanish' }
+  { value: 'es', label: 'Spanish' },
+  { value: 'sv', label: 'Swedish' },
+  { value: 'ta', label: 'Tamil' }
 ]
+
 
 const themes: DropdownConfigType[] = [
   {
