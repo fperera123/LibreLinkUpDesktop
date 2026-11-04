@@ -1,4 +1,5 @@
 import { BrowserWindow, ipcMain, app } from 'electron';
+import fs from 'fs';
 import path from 'path';
 import { resolveHtmlPath } from './util';
 import { WindowModeManager } from './windowMode';
@@ -48,9 +49,27 @@ export const registerWindowHandlers = () => {
   ipcMain.on('set-window-mode', (event, mode: 'overlay' | 'windowed') => {
     windowModeManager.setWindowMode(mode);
 
-    // in order to change window options we need to restart
-    app.relaunch();
-    app.exit();
+    // Window chrome is fixed at startup; restart to apply mode.
+    if (process.env.NODE_ENV === 'development') {
+      // electronmon watches src/main — relaunch alone leaves it idle after exit.
+      const electronmonTrigger = path.join(
+        app.getAppPath(),
+        'src',
+        'main',
+        'windowHandler.ts',
+      );
+      try {
+        const now = new Date();
+        fs.utimesSync(electronmonTrigger, now, now);
+      } catch (touchError) {
+        console.error('Failed to trigger electronmon restart:', touchError);
+      }
+      app.exit(0);
+      return;
+    }
+
+    app.relaunch({ args: process.argv.slice(1) });
+    app.exit(0);
   });
 
   ipcMain.handle('get-window-mode', () => {
