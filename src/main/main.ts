@@ -1,10 +1,11 @@
 /* eslint global-require: off, no-console: off, promise/always-return: off */
 import path from "path"
 import { app, BrowserWindow, ipcMain, shell } from "electron"
+import electronDebug from "electron-debug"
 // import { autoUpdater } from "electron-updater"
 // import log from "electron-log"
 import MenuBuilder from "./menu"
-import { resolveHtmlPath } from "./util"
+import { resolveHtmlPath, waitForDevServer } from "./util"
 import { WindowStateManager, WindowState } from './windowState';
 import { WindowModeManager } from "./windowMode";
 import { registerWindowHandlers, destroyWindowHandlers } from "./windowHandler";
@@ -34,7 +35,7 @@ const isDebug =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true'
 
 if (isDebug) {
-  require('electron-debug')()
+  electronDebug()
 }
 
 const installExtensions = async () => {
@@ -75,7 +76,23 @@ const createWindow = async () => {
     windowStateManager.manage(mainWindow);
   }
 
-  mainWindow.loadURL(resolveHtmlPath('index.html'))
+  const devServerUrl = isDebug
+    ? await waitForDevServer('index.html')
+    : resolveHtmlPath('index.html')
+
+  mainWindow.loadURL(devServerUrl)
+
+  mainWindow.webContents.on('did-fail-load', (_event, errorCode, _description, _url, isMainFrame) => {
+    if (!isMainFrame || !isDebug || !mainWindow) {
+      return
+    }
+    // -102: CONNECTION_REFUSED, -106: INTERNET_DISCONNECTED
+    if (errorCode === -102 || errorCode === -106) {
+      setTimeout(() => {
+        mainWindow?.loadURL(resolveHtmlPath('index.html'))
+      }, 1000)
+    }
+  })
 
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {
