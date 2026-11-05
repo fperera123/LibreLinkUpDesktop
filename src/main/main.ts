@@ -34,8 +34,24 @@ if (process.env.NODE_ENV === 'production') {
 const isDebug =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true'
 
+const windowModeManager = new WindowModeManager('main-window');
+const windowMode = windowModeManager.getWindowMode();
+
+/** Tiny overlay windows cannot host docked DevTools (v5 opens them by default). */
+const overlayTransparentWindows = new WeakSet<BrowserWindow>();
+
 if (isDebug) {
-  electronDebug()
+  electronDebug({
+    windowSelector(win) {
+      if (overlayTransparentWindows.has(win)) {
+        return {
+          showDevTools: false,
+          devToolsMode: 'detach',
+        };
+      }
+      return true;
+    },
+  });
 }
 
 const installExtensions = async () => {
@@ -51,9 +67,6 @@ const installExtensions = async () => {
     .catch(console.log)
 }
 
-const windowModeManager = new WindowModeManager('main-window');
-const windowMode = windowModeManager.getWindowMode();
-
 const createWindow = async () => {
   if (isDebug) {
     await installExtensions()
@@ -64,6 +77,10 @@ const createWindow = async () => {
   mainWindow = new BrowserWindow(windowOptions);
 
   mainWindow.isPrimary = true;
+
+  if (windowMode === 'overlayTransparent') {
+    overlayTransparentWindows.add(mainWindow);
+  }
 
   // 👉 save window state
   const defaultWindowState: WindowState = {
