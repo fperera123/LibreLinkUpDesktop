@@ -12,6 +12,7 @@
       "@/*": ["./renderer/*"]
     },
     "moduleResolution": "node",
+    "rootDir": "./src",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,

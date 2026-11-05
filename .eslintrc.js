@@ -35,6 +35,9 @@ module.exports = {
     createDefaultProgram: true,
   },
   settings: {
+    react: {
+      version: '19.3',
+    },
     'import/resolver': {
       // See https://github.com/benmosher/eslint-plugin-import/issues/1396#issuecomment-575727774 for line below
       node: {},

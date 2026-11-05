@@ -1,10 +1,11 @@
 /* eslint global-require: off, no-console: off, promise/always-return: off */
 import path from "path"
 import { app, BrowserWindow, ipcMain, shell } from "electron"
+import electronDebug from "electron-debug"
 // import { autoUpdater } from "electron-updater"
 // import log from "electron-log"
 import MenuBuilder from "./menu"
-import { resolveHtmlPath } from "./util"
+import { resolveHtmlPath, waitForDevServer } from "./util"
 import { WindowStateManager, WindowState } from './windowState';
 import { WindowModeManager } from "./windowMode";
 import { registerWindowHandlers, destroyWindowHandlers } from "./windowHandler";
@@ -33,8 +34,24 @@ if (process.env.NODE_ENV === 'production') {
 const isDebug =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true'
 
+const windowModeManager = new WindowModeManager('main-window');
+const windowMode = windowModeManager.getWindowMode();
+
+/** Tiny overlay windows cannot host docked DevTools (v5 opens them by default). */
+const overlayTransparentWindows = new WeakSet<BrowserWindow>();
+
 if (isDebug) {
-  require('electron-debug')()
+  electronDebug({
+    windowSelector(win) {
+      if (overlayTransparentWindows.has(win)) {
+        return {
+          showDevTools: false,
+          devToolsMode: 'detach',
+        };
+      }
+      return true;
+    },
+  });
 }
 
 const installExtensions = async () => {
@@ -50,9 +67,6 @@ const installExtensions = async () => {
     .catch(console.log)
 }
 
-const windowModeManager = new WindowModeManager('main-window');
-const windowMode = windowModeManager.getWindowMode();
-
 const createWindow = async () => {
   if (isDebug) {
     await installExtensions()
@@ -63,6 +77,10 @@ const createWindow = async () => {
   mainWindow = new BrowserWindow(windowOptions);
 
   mainWindow.isPrimary = true;
+
+  if (windowMode === 'overlayTransparent') {
+    overlayTransparentWindows.add(mainWindow);
+  }
 
   // 👉 save window state
   const defaultWindowState: WindowState = {
@@ -75,7 +93,23 @@ const createWindow = async () => {
     windowStateManager.manage(mainWindow);
   }
 
-  mainWindow.loadURL(resolveHtmlPath('index.html'))
+  const devServerUrl = isDebug
+    ? await waitForDevServer('index.html')
+    : resolveHtmlPath('index.html')
+
+  mainWindow.loadURL(devServerUrl)
+
+  mainWindow.webContents.on('did-fail-load', (_event, errorCode, _description, _url, isMainFrame) => {
+    if (!isMainFrame || !isDebug || !mainWindow) {
+      return
+    }
+    // -102: CONNECTION_REFUSED, -106: INTERNET_DISCONNECTED
+    if (errorCode === -102 || errorCode === -106) {
+      setTimeout(() => {
+        mainWindow?.loadURL(resolveHtmlPath('index.html'))
+      }, 1000)
+    }
+  })
 
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {
