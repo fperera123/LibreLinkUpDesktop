@@ -26,9 +26,9 @@ export default function App() {
   useEffect(() => {
     async function fetchAndStoreWindowMode() {
       const mode = await getWindowMode();
-      console.log('fetchWindowMode', mode);
-
-      setLocalStorageWindowMode(mode);
+      if (mode) {
+        setLocalStorageWindowMode(mode);
+      }
     }
 
     fetchAndStoreWindowMode();

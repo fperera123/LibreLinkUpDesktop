@@ -20,6 +20,11 @@ window.electron = {
   ipcRenderer: {
     on: jest.fn(() => jest.fn()),
     sendMessage: jest.fn(),
-    invoke: jest.fn(),
+    invoke: jest.fn((channel: string) => {
+      if (channel === 'get-window-mode') {
+        return Promise.resolve('windowed');
+      }
+      return Promise.resolve(undefined);
+    }),
   },
 } as typeof window.electron;
