@@ -1,8 +1,12 @@
 import { BrowserWindow, ipcMain, app } from 'electron';
-import fs from 'fs';
 import path from 'path';
 import { resolveHtmlPath } from './util';
 import { WindowModeManager } from './windowMode';
+
+/** Matches electronmon/src/signal.js — exit with this code to restart in dev. */
+const ELECTRONMON_RESTART_EXIT_CODE = Number(
+  process.env.ELECTRONMON_SPECIAL_SIGNAL || 37,
+);
 
 interface WindowCache {
   [url: string]: BrowserWindow | undefined;
@@ -46,25 +50,13 @@ export const registerWindowHandlers = () => {
 
   });
 
-  ipcMain.on('set-window-mode', (event, mode: 'overlay' | 'windowed') => {
+  ipcMain.on('set-window-mode', (event, mode: 'overlay' | 'windowed' | 'overlayTransparent') => {
     windowModeManager.setWindowMode(mode);
 
     // Window chrome is fixed at startup; restart to apply mode.
     if (process.env.NODE_ENV === 'development') {
-      // electronmon watches src/main — relaunch alone leaves it idle after exit.
-      const electronmonTrigger = path.join(
-        app.getAppPath(),
-        'src',
-        'main',
-        'windowHandler.ts',
-      );
-      try {
-        const now = new Date();
-        fs.utimesSync(electronmonTrigger, now, now);
-      } catch (touchError) {
-        console.error('Failed to trigger electronmon restart:', touchError);
-      }
-      app.exit(0);
+      // Let electronmon spawn a fresh process (reads updated mode from disk).
+      app.exit(ELECTRONMON_RESTART_EXIT_CODE);
       return;
     }
 
@@ -81,5 +73,5 @@ export const destroyWindowHandlers = () => {
   // 👉 destroy window handlers
   ipcMain.removeAllListeners('open-new-window');
   ipcMain.removeAllListeners('set-window-mode');
-  ipcMain.removeAllListeners('get-window-mode');
+  ipcMain.removeHandler('get-window-mode');
 };
