@@ -84,5 +84,6 @@
   "Max Value" : "Max Value",
   "Enter Value" : "Enter Value",
   "Apply Changes": "Apply Changes",
-  "Show glucose values in tray": "System Tray"
+  "Show glucose values in tray": "System Tray",
+  "Autostart on login": "Autostart on login"
 }
