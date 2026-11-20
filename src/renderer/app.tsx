@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion"
 import { useAuthStore } from "@/stores/auth"
 import routes from "@/routes"
 import "@/globals.css"
+import "@/custom.css"
 import "@/i18n/config"
 import { useEffect } from "react"
 import { getWindowMode, setLocalStorageWindowMode } from "@/lib/utils";
@@ -15,12 +16,7 @@ export default function App() {
       window.location.reload();
     };
 
-    const ipc = window.electron?.ipcRenderer;
-    if (!ipc) {
-      return undefined;
-    }
-
-    const unsubscribe = ipc.on('logout-event', handleLogout);
+    const unsubscribe = window.electron.ipcRenderer.on('logout-event', handleLogout);
 
     return () => {
       unsubscribe();
@@ -31,9 +27,9 @@ export default function App() {
   useEffect(() => {
     async function fetchAndStoreWindowMode() {
       const mode = await getWindowMode();
-      if (mode) {
-        setLocalStorageWindowMode(mode);
-      }
+      console.log('fetchWindowMode', mode);
+
+      setLocalStorageWindowMode(mode);
     }
 
     fetchAndStoreWindowMode();

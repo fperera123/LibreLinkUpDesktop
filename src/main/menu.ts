@@ -10,17 +10,6 @@ interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
   submenu?: DarwinMenuItemConstructorOptions[] | Menu
 }
 
-/** Docked DevTools hide the exit control on the 200×45 transparent overlay. */
-function toggleDevToolsForWindow(win: BrowserWindow) {
-  const { webContents } = win
-  if (webContents.isDevToolsOpened()) {
-    webContents.closeDevTools()
-    return
-  }
-  const compactOverlay = win.getBounds().height <= 60
-  webContents.openDevTools(compactOverlay ? { mode: 'detach' } : {})
-}
-
 export default class MenuBuilder {
   mainWindow: BrowserWindow
 
@@ -124,7 +113,7 @@ export default class MenuBuilder {
           label: 'Toggle Developer Tools',
           accelerator: 'Alt+Command+I',
           click: () => {
-            toggleDevToolsForWindow(this.mainWindow)
+            this.mainWindow.webContents.toggleDevTools()
           },
         },
       ],
@@ -208,7 +197,7 @@ export default class MenuBuilder {
                   label: 'Toggle &Developer Tools',
                   accelerator: 'Alt+Ctrl+I',
                   click: () => {
-                    toggleDevToolsForWindow(this.mainWindow)
+                    this.mainWindow.webContents.toggleDevTools()
                   },
                 },
               ]

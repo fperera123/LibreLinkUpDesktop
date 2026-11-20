@@ -16,10 +16,8 @@ export function PublicLayout({ children, className }: Props) {
   const language = useAuthStore((state) => state.language)
 
   useEffect(() => {
-    if (language) {
-      i18n.changeLanguage(language)
-    }
-  }, [i18n, language])
+    i18n.changeLanguage(language)
+  }, [])
 
   return (
     <ThemeProvider>
