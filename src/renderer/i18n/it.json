@@ -73,6 +73,11 @@
     "Portuguese": "Portoghese",
     "Chinese": "Cinese",
     "Show glucose values in tray": "Barra delle applicazioni",
+    "Autostart on login": "Avvio automatico all'accesso",
     "Japanese": "Giapponese",
-    "Bengali": "Bengalese"
+    "Bengali": "Bengalese",
+    "sensorConnectionLostWithAge": "La connessione al sensore potrebbe essere persa. Nessun nuovo valore da {{age}}.",
+    "sensorConnectionLostUnknownAge": "La connessione al sensore potrebbe essere persa. Nessun nuovo valore disponibile.",
+    "unableToFetchGlucoseData": "Impossibile recuperare i dati della glicemia. Riprova.",
+    "failedToLoadGlucoseData": "Impossibile caricare i dati della glicemia. Controlla la connessione."
 }

@@ -1,3 +1,5 @@
 /* eslint import/no-unresolved: off, import/no-self-import: off */
 
-module.exports = require('./webpack.config.renderer.dev').default;
+import baseConfig from './webpack.config.base';
+
+export default baseConfig;
