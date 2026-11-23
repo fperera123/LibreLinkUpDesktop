@@ -66,6 +66,9 @@ export default function DashboardPage() {
   }
 
   const notifySensorStaleOnce = (message: string) => {
+    if (localStorage.getItem('windowMode') === 'overlayTransparent') {
+      return;
+    }
     if (staleSensorToastShown.current) {
       return;
     }
@@ -299,7 +302,7 @@ export default function DashboardPage() {
           type="button"
           aria-label={t('WindowMode')}
           onClick={() => changeToWindowedMode()}
-          className="absolute 2xs:top-2 2xs:right-2 md:top-5 md:right-5 right-0 top-0 outline-none hover:bg-white/20 p-2 rounded-md transition-all no-draggable"
+          className="absolute z-20 2xs:top-2 2xs:right-2 md:top-5 md:right-5 right-0 top-0 outline-none hover:bg-white/20 p-2 rounded-md transition-all no-draggable"
         >
           <div className=''>
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white 2xs:h-6 2xs:w-6 w-4 h-4">
@@ -314,12 +317,12 @@ export default function DashboardPage() {
           </div>
         </button>
       )}
-      {connectionStatus.lost && connectionStatus.detail && (
+      {connectionStatus.lost &&
+        connectionStatus.detail &&
+        currentWindowMode !== 'overlayTransparent' && (
         <div
           role="alert"
-          className={`absolute left-0 right-0 bottom-3 px-4 no-draggable ${
-            currentWindowMode === 'overlayTransparent' ? 'overlay-shadow' : ''
-          }`}
+          className="absolute left-0 right-0 bottom-3 px-4 no-draggable z-0"
         >
           <p className="text-center text-white text-xs xs:text-sm font-medium bg-black/35 rounded-md px-3 py-2">
             {connectionStatus.detail}

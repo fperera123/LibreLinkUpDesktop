@@ -13,7 +13,11 @@ import { registerLogoutHandler, destroyLogoutHandler } from "./logoutHandler";
 import { registerRefreshHandler, destroyRefreshHandler } from "./refreshHandler";
 import { registerAlertHandler, destroyAlertHandler } from "./alertHandler";
 import { registerTrayHandler, destroyTrayHandler, setTrayMainWindow } from "./trayHandler";
-import { registerAutostartHandler, destroyAutostartHandler } from "./autostartHandler";
+import {
+  registerAutostartHandler,
+  destroyAutostartHandler,
+  ensureAutostartAfterInstall,
+} from "./autostartHandler";
 import { destroyTray } from "../renderer/lib/trayManager";
 
 // class AppUpdater {
@@ -254,6 +258,7 @@ app.on('window-all-closed', () => {
 app
   .whenReady()
   .then(() => {
+    ensureAutostartAfterInstall();
     createWindow()
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
