@@ -1,5 +1,10 @@
 // Check if the renderer and main bundles are built
+import { TextDecoder, TextEncoder } from 'util';
+
+Object.assign(globalThis, { TextEncoder, TextDecoder });
+
 import path from 'path';
+import chalk from 'chalk';
 import fs from 'fs';
 import webpackPaths from '../configs/webpack.paths';
 
@@ -8,12 +13,16 @@ const rendererPath = path.join(webpackPaths.distRendererPath, 'renderer.js');
 
 if (!fs.existsSync(mainPath)) {
   throw new Error(
-    'The main process is not built yet. Build it by running "npm run build:main"'
+    chalk.whiteBright.bgRed.bold(
+      'The main process is not built yet. Build it by running "npm run build:main"'
+    )
   );
 }
 
 if (!fs.existsSync(rendererPath)) {
   throw new Error(
-    'The renderer process is not built yet. Build it by running "npm run build:renderer"'
+    chalk.whiteBright.bgRed.bold(
+      'The renderer process is not built yet. Build it by running "npm run build:renderer"'
+    )
   );
 }
