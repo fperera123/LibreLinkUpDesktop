@@ -12,12 +12,21 @@
       "@/*": ["./renderer/*"]
     },
     "moduleResolution": "node",
-    "rootDir": "./src",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "allowJs": true,
     "outDir": ".erb/dll"
   },
+  "include": [
+    "src/**/*",
+    ".erb/**/*.ts",
+    ".erb/**/*.tsx",
+    ".erb/**/*.js",
+    ".eslintrc.js",
+    "assets/**/*.d.ts",
+    "postcss.config.js",
+    "tailwind.config.js"
+  ],
   "exclude": ["test", "release/build", "release/app/dist", ".erb/dll"]
 }

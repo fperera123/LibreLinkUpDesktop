@@ -1,8 +1,8 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { useAuthStore } from '../stores/auth'
 import CryptoJS from 'crypto-js';
 import { getCGMData, isCgmApiError, type CgmConnectionData } from '@/lib/linkup';
+import { useAuthStore } from '../stores/auth'
 
 /** Readings older than this are treated as a lost sensor connection (minutes). */
 export const STALE_GLUCOSE_THRESHOLD_MINUTES = 15;

@@ -4,13 +4,8 @@ import { BaseLayout } from '@/layouts/base-layout';
 import { useAuthStore } from '@/stores/auth';
 import { getCGMData, isCgmApiError } from '@/lib/linkup';
 import { TrendArrow } from '@/components/ui/trend-arrow';
-import {
-  EnterFullScreenIcon,
-  GearIcon,
-} from '@radix-ui/react-icons';
-import { useNavigate } from 'react-router-dom';
+import { GearIcon } from '@radix-ui/react-icons';
 import { LoadingScreen } from '@/components/ui/loading';
-import { useClearSession } from '@/hooks/session';
 import { toast } from 'sonner';
 import {
   openNewWindow,
@@ -45,15 +40,12 @@ const initialConnectionStatus: SensorConnectionStatus = {
 };
 
 export default function DashboardPage() {
-  const { clearSession } = useClearSession();
-  const navigate = useNavigate();
   const token = useAuthStore((state) => state.token);
   const country = useAuthStore((state) => state.country);
   const accountId = useAuthStore((state) => state.accountId);
   const { t } = useTranslation();
   const [graphData, setGraphData] = useState<any>({});
   const [isReady, setIsReady] = useState(false);
-  const [trayVisible, setTrayVisible] = useState<boolean>(true);
   const [connectionStatus, setConnectionStatus] =
     useState<SensorConnectionStatus>(initialConnectionStatus);
   const graphDataRef = useRef<Record<string, unknown>>({});
@@ -293,8 +285,10 @@ export default function DashboardPage() {
             )
       } flex justify-center items-center draggable`}
     >
-      {currentWindowMode == 'windowed' ? (
+      {currentWindowMode === 'windowed' ? (
         <button
+          type="button"
+          aria-label={t('Settings')}
           onClick={() => openSettings('/settings/general')}
           className="absolute 2xs:top-5 2xs:right-5 right-0 top-0 outline-none hover:bg-white/20 p-2 rounded-md transition-all no-draggable"
         >
@@ -302,6 +296,8 @@ export default function DashboardPage() {
         </button>
       ) : (
         <button
+          type="button"
+          aria-label={t('WindowMode')}
           onClick={() => changeToWindowedMode()}
           className="absolute 2xs:top-2 2xs:right-2 md:top-5 md:right-5 right-0 top-0 outline-none hover:bg-white/20 p-2 rounded-md transition-all no-draggable"
         >
@@ -338,9 +334,7 @@ export default function DashboardPage() {
                 : ''
             } text-white font-semibold xs:text-3xl text-xl`}
         >
-          {getUserValue(graphData?.glucoseMeasurement?.ValueInMgPerDl) +
-            ' ' +
-            getUserUnit()}
+          {`${getUserValue(graphData?.glucoseMeasurement?.ValueInMgPerDl)} ${getUserUnit()}`}
         </p>
         <div
           className={`flex justify-center items-center xs:h-12 xs:w-12 h-6 w-6 rounded-full ${

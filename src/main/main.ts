@@ -14,7 +14,7 @@ import { registerRefreshHandler, destroyRefreshHandler } from "./refreshHandler"
 import { registerAlertHandler, destroyAlertHandler } from "./alertHandler";
 import { registerTrayHandler, destroyTrayHandler, setTrayMainWindow } from "./trayHandler";
 import { registerAutostartHandler, destroyAutostartHandler } from "./autostartHandler";
-import { destroyTray } from './../renderer/lib/trayManager';
+import { destroyTray } from "../renderer/lib/trayManager";
 
 // class AppUpdater {
 //   constructor() {
@@ -141,7 +141,7 @@ const createWindow = async () => {
       } catch {
         // no-op: window may already be tearing down under hot-reload
       }
-      return;
+      
     }
     // allow close on non-mac or when quitting
   });
@@ -219,7 +219,7 @@ const getWindowOptions = (windowMode: 'overlay' | 'windowed' | 'overlayTranspare
       skipTaskbar: true,
     };
   }
-  else if (windowMode === 'windowed') {
+  if (windowMode === 'windowed') {
     return {
       ...baseOptions,
       width: 1024,
